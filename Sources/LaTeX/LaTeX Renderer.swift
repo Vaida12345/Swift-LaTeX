@@ -40,7 +40,7 @@ public struct LaTeXRenderer: NSViewRepresentable {
     public func updateNSView(_ view: WKWebView, context: Context) {
         let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ## Vaida ##", with: "$" + formula + "$")
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
-            .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme).hexDescription)
+            .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme))
         let webViewBaseUrl = URL(fileURLWithPath: FinderItem.bundleDirectory.path, isDirectory: true)
         
         view.loadHTMLString(htmlValue, baseURL: webViewBaseUrl)
@@ -84,6 +84,16 @@ public struct LaTeXRenderer: NSViewRepresentable {
                 color: ## foreground color ##;
             }
 
+            * {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                outline: 0;
+                font-size: 100%;
+                vertical-align: baseline;
+                background: transparent;
+            }
+
             #LaTeXView {
                 display: inline-block;
                 min-height: 0px;
@@ -108,14 +118,26 @@ public struct LaTeXRenderer: NSViewRepresentable {
 
 extension Color {
     
-    static func background(for colorScheme: ColorScheme) -> Color {
-        return .black
+    static func background(for colorScheme: ColorScheme) -> String {
+        var red   = ""
+        var green = ""
+        var blue  = ""
         
         if colorScheme == .dark {
-            return Color(.displayP3, red: 30 / 255, green: 30 / 255, blue: 30 / 255)
+            red   = String(29, radix: 16, uppercase: false)
+            green = String(28, radix: 16, uppercase: false)
+            blue  = String(28, radix: 16, uppercase: false)
         } else {
-            return Color(.displayP3, red: 234 / 255, green: 234 / 255, blue: 234 / 255)
+            red   = String(235, radix: 16, uppercase: false)
+            green = String(234, radix: 16, uppercase: false)
+            blue  = String(234, radix: 16, uppercase: false)
         }
+        
+        if red.count   == 1 { red.insert("0",   at: red.startIndex) }
+        if green.count == 1 { green.insert("0", at: green.startIndex) }
+        if blue.count  == 1 { blue.insert("0",  at: blue.startIndex) }
+        
+        return red + green + blue
     }
     
     static func foreground(for colorScheme: ColorScheme) -> Color {

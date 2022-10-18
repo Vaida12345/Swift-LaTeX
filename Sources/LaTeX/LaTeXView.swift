@@ -18,8 +18,10 @@ public struct LaTeXView: View {
     let formula: String
     
     public var body: some View {
-        LaTeXRenderer(formula: formula, width: $width, height: $height)
-            .frame(width: width, height: height)
+        ContainerView {
+            LaTeXRenderer(formula: formula, width: $width, height: $height)
+                .frame(width: width, height: height)
+        }
     }
     
     public init(formula: String) {
@@ -29,8 +31,6 @@ public struct LaTeXView: View {
 
 struct LaTeXView_Previews: PreviewProvider {
     static var previews: some View {
-        ContainerView {
-            LaTeXView(formula: "\\pi = 3.14")
-        }
+        LaTeXView(formula: "\\pi = 3.14")
     }
 }
