@@ -22,7 +22,7 @@ struct ContentView: View {
 }
 ```
 ---
-As a javascript package was used to render LaTeX, the Outgoing network Connections needs to be enabled in Project Sanbox.
+As a javascript package was used to render LaTeX, the Outgoing network Connections needs to be enabled in Project Sandbox.
 
 
 ## Credits

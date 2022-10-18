@@ -8,13 +8,11 @@
 
 import SwiftUI
 import WebKit
-import Support
 
 
-/// A view that supports LaTeX.
-public struct LaTeXRenderer: NSViewRepresentable {
+internal struct LaTeXRenderer: NSViewRepresentable {
     
-    public typealias NSViewType = WKWebView
+    typealias NSViewType = WKWebView
     
     let formula: String
     
@@ -23,29 +21,29 @@ public struct LaTeXRenderer: NSViewRepresentable {
     
     @Environment(\.colorScheme) var colorScheme
     
-    public init(formula: String, width: Binding<CGFloat?>, height: Binding<CGFloat?>) {
+    init(formula: String, width: Binding<CGFloat?>, height: Binding<CGFloat?>) {
         self.formula = formula
         
         self._width = width
         self._height = height
     }
     
-    public func makeNSView(context: Context) -> WKWebView {
+    func makeNSView(context: Context) -> WKWebView {
         let view = WKWebView()
         
         updateNSView(view, context: context)
         return view
     }
     
-    public func updateNSView(_ view: WKWebView, context: Context) {
-        let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ## Vaida ##", with: "$" + formula + "$")
+    func updateNSView(_ view: WKWebView, context: Context) {
+        let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "$" + formula + "$")
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
             .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme))
-        let webViewBaseUrl = URL(fileURLWithPath: FinderItem.bundleDirectory.path, isDirectory: true)
+        let webViewBaseUrl = URL(fileURLWithPath: Bundle.main.bundlePath, isDirectory: true)
         
         view.loadHTMLString(htmlValue, baseURL: webViewBaseUrl)
         
-        DispatchQueue.main.delay(seconds: 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             Task {
                 let width = try! await view.evaluateJavaScript("document.getElementById('LaTeXView').clientWidth") as! Int
                 let height = try! await view.evaluateJavaScript("document.getElementById('LaTeXView').clientHeight") as! Int
@@ -111,7 +109,7 @@ public struct LaTeXRenderer: NSViewRepresentable {
 
     <body>
         <div id='LaTeXView'>
-            ## The body of equal goes here ## Vaida ##
+            ## The body of equal goes here ##
         </div>
     </body>
 </html>
@@ -120,7 +118,36 @@ public struct LaTeXRenderer: NSViewRepresentable {
 }
 
 
-extension Color {
+fileprivate extension Color {
+    
+    var animatableData: [Double] {
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+        let color = NSColor(self).usingColorSpace(.displayP3)!
+        return [color.redComponent, color.greenComponent, color.blueComponent, color.alphaComponent]
+#elseif canImport(UIKit)
+        let color = UIColor(self).cgColor.converted(to: CGColorSpace(name: CGColorSpace.displayP3)!, intent: .defaultIntent, options: nil)!
+        return color.components!.map { Double($0) } + [color.alpha]
+#endif
+    }
+    
+    /// The Hexadecimal description of the image
+    ///
+    /// **Example**
+    ///
+    ///     Color.white.hexDescription // "ffffff"
+    var hexDescription: String {
+        let vector = self.animatableData
+        
+        var red   = String(Int(vector[0] * 255), radix: 16, uppercase: false)
+        var green = String(Int(vector[1] * 255), radix: 16, uppercase: false)
+        var blue  = String(Int(vector[2]  * 255), radix: 16, uppercase: false)
+        
+        if red.count   == 1 { red.insert("0",   at: red.startIndex) }
+        if green.count == 1 { green.insert("0", at: green.startIndex) }
+        if blue.count  == 1 { blue.insert("0",  at: blue.startIndex) }
+        
+        return red + green + blue
+    }
     
     static func background(for colorScheme: ColorScheme) -> String {
         var red   = ""

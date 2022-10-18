@@ -7,30 +7,35 @@
 
 
 import SwiftUI
-import Support
 
 
+/// A view that can display LaTeX formulas.
+///
+/// - Note: Outgoing network Connections needs to be enabled in Project Sandbox.
 public struct LaTeXView: View {
     
     @State private var width: CGFloat?
     @State private var height: CGFloat?
     
-    let formula: String
+    private let formula: String
     
     public var body: some View {
-        ContainerView {
+        ZStack {
+            Rectangle()
+                .fill(.clear)
+                .contentShape(Rectangle())
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
             LaTeXRenderer(formula: formula, width: $width, height: $height)
                 .frame(width: width, height: height)
         }
     }
     
+    /// Initialize a new LaTeX View.
+    ///
+    /// - parameters:
+    ///   - formula: The formula in LaTeX to be displayed.
     public init(formula: String) {
         self.formula = formula
-    }
-}
-
-struct LaTeXView_Previews: PreviewProvider {
-    static var previews: some View {
-        LaTeXView(formula: "\\pi = 3.14")
     }
 }
