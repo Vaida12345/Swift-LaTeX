@@ -74,7 +74,7 @@ internal struct LaTeXRenderer: NSViewRepresentable {
           };
       </script>
 
-      <script id="MathJax-script" async src="Contents/Resources/Swift-LaTeX_LaTeX/Contents/Resources/MathJax/es5/tex-chtml.js"></script>
+      <script id="MathJax-script" async src="Contents/Resources/Swift-LaTeX_LaTeX.bundle/Contents/Resources/MathJax/es5/tex-chtml.js"></script>
 
         <style>
             body {
