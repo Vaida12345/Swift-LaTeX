@@ -24,6 +24,17 @@ struct ContentView: View {
 ---
 As a javascript package was used to render LaTeX, the Outgoing network Connections needs to be enabled in Project Sandbox.
 
+## Using Swift LaTeX
+
+If you are working on a Swift Package, use
+```swift
+// inside Package.swift
+dependencies: [
+    .package(url: "https://github.com/Vaida12345/Swift-LaTeX.git")
+],
+```
+Otherwise, use the project link to find this package in Xcode.
+
 
 ## Credits
 - [MathJax](https://github.com/mathjax/MathJax).
