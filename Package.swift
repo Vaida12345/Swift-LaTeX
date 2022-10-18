@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "LaTeX",
+    name: "Swift-LaTeX",
     platforms: [
         .macOS(.v12),
         .iOS(.v15)
