@@ -82,6 +82,8 @@ public struct LaTeXRenderer: NSViewRepresentable {
             body {
                 background: ## background color ##;
                 color: ## foreground color ##;
+                text-align: center;
+                vertical-align: middle;
             }
 
             * {
@@ -90,8 +92,9 @@ public struct LaTeXRenderer: NSViewRepresentable {
                 border: 0;
                 outline: 0;
                 font-size: 100%;
-                vertical-align: baseline;
+                text-align: center;
                 background: transparent;
+                vertical-align: middle;
             }
 
             #LaTeXView {
@@ -99,8 +102,9 @@ public struct LaTeXRenderer: NSViewRepresentable {
                 min-height: 0px;
                 min-width: 0px;
                 overflow: hidden;
-                white-space: pre-line;
                 padding: 0px;
+                text-align: center;
+                vertical-align: middle;
             }
         </style>
     </head>
