@@ -6,7 +6,7 @@
 //
 
 
-public struct Text: LaTeXComponent {
+public struct LaTeXText: LaTeXComponent {
     
     private let value: String
     
@@ -58,8 +58,8 @@ public struct Text: LaTeXComponent {
         self.init(value, font: nil)
     }
     
-    public func font(_ font: Font) -> Text {
-        Text(value, font: font)
+    public func font(_ font: Font) -> LaTeXText {
+        LaTeXText(value, font: font)
     }
     
     public enum Font: String {

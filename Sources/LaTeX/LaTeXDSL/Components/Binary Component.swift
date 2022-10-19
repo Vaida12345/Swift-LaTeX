@@ -8,6 +8,8 @@
 
 public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS: LaTeXComponent>: LaTeXComponent {
     
+    public typealias Body = Never
+    
     private let lhs: Group<LHS>
     
     private let `operator`: Operator

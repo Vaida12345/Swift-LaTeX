@@ -75,3 +75,25 @@ extension String: LaTeXComponent {
     }
     
 }
+
+extension Double: LaTeXComponent {
+    
+    public var latexExpression: String {
+        self.description
+    }
+    
+}
+
+extension Int: LaTeXComponent {
+    
+    public var latexExpression: String {
+        self.description
+    }
+    
+}
+
+extension Never: LaTeXComponent {
+    
+    public var latexExpression: String { "" }
+    
+}
