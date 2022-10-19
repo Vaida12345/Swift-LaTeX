@@ -11,3 +11,11 @@ public protocol LaTeXModifier {
     func modify(_ component: some LaTeXComponent) -> String
     
 }
+
+public extension LaTeXComponent {
+    
+    func modifier<Modifier: LaTeXModifier>(_ modifier: Modifier) -> LaTeXModifiedContent<Self, Modifier> {
+        LaTeXModifiedContent(content: self, modifier: modifier)
+    }
+    
+}
