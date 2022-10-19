@@ -5,15 +5,13 @@ import SwiftUI
 
 final class LaTeXTests: XCTestCase {
     func testExample() async throws {
-        let lhs = LaTeXSymbols.Greek.delta
-            .accent(.bar)
+        let variable = Greek.delta
         
-        let rhs = LaTeXSymbols.BinaryRelation.in
-            .accent(.bar)
+        let formula = LargeOperator(.sum, variable, from: Greek.gamma, to: Greek.varepsilon) { variable in
+            variable + variable
+        }
         
-        let combined = lhs + rhs
-        
-        print(combined)
-        print(combined.latexExpression)
+        print(formula)
+        print(formula.latexExpression)
     }
 }

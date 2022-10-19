@@ -6,21 +6,21 @@
 //
 
 
-struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS: LaTeXComponent>: LaTeXComponent {
+public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS: LaTeXComponent>: LaTeXComponent {
     
-    let lhs: GroupComponent<LHS>
+    private let lhs: Group<LHS>
     
-    let `operator`: Operator
+    private let `operator`: Operator
     
-    let rhs: GroupComponent<RHS>
+    private let rhs: Group<RHS>
     
-    init(lhs: LHS, operator: Operator, rhs: RHS) {
-        self.lhs = GroupComponent(lhs)
+    internal init(lhs: LHS, operator: Operator, rhs: RHS) {
+        self.lhs = Group(lhs)
         self.operator = `operator`
-        self.rhs = GroupComponent(rhs)
+        self.rhs = Group(rhs)
     }
     
-    var latexExpression: String {
+    public var latexExpression: String {
         lhs.latexExpression + self.operator.latexExpression + rhs.latexExpression
     }
     

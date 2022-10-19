@@ -21,4 +21,24 @@ public extension LaTeXComponent {
         BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.plus, rhs: rhs)
     }
     
+    static func - (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.minus, rhs: rhs)
+    }
+    
+    static func * (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.times, rhs: rhs)
+    }
+    
+    static func / (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.divide, rhs: rhs)
+    }
+    
+}
+
+extension String: LaTeXComponent {
+    
+    public var latexExpression: String {
+        self
+    }
+    
 }
