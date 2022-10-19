@@ -29,6 +29,7 @@ public struct LaTeXView: View {
             LaTeXRenderer(formula: formula, width: $width, height: $height)
                 .frame(width: width, height: height)
         }
+        .disabled(true)
     }
     
     /// Initialize a new LaTeX View.
