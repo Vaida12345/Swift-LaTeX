@@ -64,8 +64,12 @@ public extension LaTeXComponent {
     
 }
 
-public func sqrt(_ x: some LaTeXComponent) -> some LaTeXComponent {
-    x.accent(.init("sqrt"))
+public func sqrt(_ x: some LaTeXComponent, power: Int = 2) -> some LaTeXComponent {
+    if power == 2 {
+        return x.accent(.init("sqrt"))
+    } else {
+        return x.accent(.init("sqrt[\(power)]"))
+    }
 }
  
 extension String: LaTeXComponent {
