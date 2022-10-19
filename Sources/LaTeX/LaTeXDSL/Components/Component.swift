@@ -18,19 +18,19 @@ public protocol LaTeXComponent {
 public extension LaTeXComponent {
     
     static func + (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.plus, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: BinaryOperator.plus, rhs: rhs)
     }
     
     static func - (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.minus, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: BinaryOperator.minus, rhs: rhs)
     }
     
     static func * (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.times, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: BinaryOperator.times, rhs: rhs)
     }
     
     static func / (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.divide, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: BinaryOperator.divide, rhs: rhs)
     }
     
 }
