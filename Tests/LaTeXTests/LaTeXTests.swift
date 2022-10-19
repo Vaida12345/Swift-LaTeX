@@ -7,7 +7,7 @@ final class LaTeXTests: XCTestCase {
             MiscSymbols.forAll
             "x"
             BinaryRelation.in
-            LaTeXText("R")
+            LaTeXT("R")
                 .font(.mathbf)
             ":"
             Spacer.qquad
