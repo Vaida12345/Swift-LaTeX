@@ -6,7 +6,7 @@
 //
 
 
-struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
+private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
     
     private let showLine: Bool
     private let power: Int
@@ -24,11 +24,11 @@ struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
     
     var latexExpression: String {
         if !showLine {
-            return "\\surd{\(self.source)}"
+            return "\\surd{\(self.source.latexExpression)}"
         } else if power == 2 {
-            return "\\sqrt{\(self.source)}"
+            return "\\sqrt{\(self.source.latexExpression)}"
         } else {
-            return "\\sqrt[\(power)]{\(self.source)}"
+            return "\\sqrt[\(power.latexExpression)]{\(self.source.latexExpression)}"
         }
     }
     

@@ -4,17 +4,15 @@ import XCTest
 final class LaTeXTests: XCTestCase {
     func testExample() async throws {
         let formula = LaTeXBuilder.build {
-            MiscSymbols.forAll
-            "x"
-            BinaryRelation.in
-            LaTeXT("R")
-                .font(.mathbf)
-            ":"
-            Spacer.qquad
-            "x" ^ 2
-            >=
-            arccos(0)
+            Greek.varepsilon * sqrt(Limit("x", to: MiscSymbols.infinity, body: { variable in
+                variable ^ 2
+            }))
             
+            BinaryRelation.equal
+                .not()
+                .stackrel("?")
+            
+            0
         }
         
         print(formula)

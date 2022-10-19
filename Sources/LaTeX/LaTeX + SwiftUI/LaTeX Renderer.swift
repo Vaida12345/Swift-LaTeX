@@ -36,7 +36,7 @@ internal struct LaTeXRenderer: NSViewRepresentable {
     }
     
     func updateNSView(_ view: WKWebView, context: Context) {
-        let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "$" + formula + "$")
+        let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "$$" + formula + "$$")
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
             .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme))
         let webViewBaseUrl = URL(fileURLWithPath: Bundle.main.bundlePath, isDirectory: true)
