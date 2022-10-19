@@ -17,8 +17,8 @@ public protocol LaTeXComponent {
 
 public extension LaTeXComponent {
     
-    public static func + (lhs: LaTeXComponent, rhs: LaTeXComponent) -> LaTeXComponent {
-        
+    static func + (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: LaTeXSymbols.BinaryOperator.plus, rhs: rhs)
     }
     
 }
