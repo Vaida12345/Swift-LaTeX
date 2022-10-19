@@ -14,6 +14,7 @@ public protocol LaTeXComponent {
     
 }
 
+infix operator --
 
 public extension LaTeXComponent {
     
@@ -33,8 +34,40 @@ public extension LaTeXComponent {
         BinaryComponent(lhs: lhs, operator: BinaryOperator.divide, rhs: rhs)
     }
     
+    static func == (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: BinaryRelation.equal, rhs: rhs)
+    }
+    
+    static func > (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: BinaryRelation.greater, rhs: rhs)
+    }
+    
+    static func >= (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: BinaryRelation.greaterEqual, rhs: rhs)
+    }
+    
+    static func < (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: BinaryRelation.less, rhs: rhs)
+    }
+    
+    static func <= (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: BinaryRelation.lessEqual, rhs: rhs)
+    }
+    
+    static func ^ (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: "^", rhs: rhs)
+    }
+    
+    static func -- (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
+        BinaryComponent(lhs: lhs, operator: "_", rhs: rhs)
+    }
+    
 }
 
+public func sqrt(_ x: some LaTeXComponent) -> some LaTeXComponent {
+    x.accent(.init("sqrt"))
+}
+ 
 extension String: LaTeXComponent {
     
     public var latexExpression: String {

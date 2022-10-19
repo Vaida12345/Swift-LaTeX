@@ -14,7 +14,7 @@ public struct MathAccentModifier: LaTeXModifier {
         "\\\(symbolName){\(component.latexExpression)}"
     }
     
-    private init(_ symbolName: String) {
+    internal init(_ symbolName: String) {
         self.symbolName = symbolName
     }
     
