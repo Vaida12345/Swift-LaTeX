@@ -13,7 +13,8 @@ final class LaTeXTests: XCTestCase {
             Spacer.qquad
             "x" ^ 2
             >=
-            0
+            arccos(0)
+            
         }
         
         print(formula)
