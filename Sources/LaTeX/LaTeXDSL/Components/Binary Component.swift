@@ -23,7 +23,7 @@ public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS
     }
     
     public var latexExpression: String {
-        lhs.latexExpression + " " + self.operator.latexExpression + " " + rhs.latexExpression
+        lhs.latexExpression + self.operator.latexExpression + rhs.latexExpression
     }
     
 }
