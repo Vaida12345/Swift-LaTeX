@@ -28,7 +28,7 @@ As a javascript package was used to render LaTeX, the Outgoing network Connectio
 
 This part was designed with the goal of writing LaTeX the way you write SwiftUI.
 
-${\nabla\times{\overrightarrow{\mathbf{B}}}}-{\frac{1}{C}} {\frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}=4 \pi \rho$
+$${\nabla\times{\overrightarrow{\mathbf{B}}}}-{\frac{1}{C}} {\frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}=4 \pi \rho$$
 
 ```swift
 let formula = LaTeXBuilder.build {
