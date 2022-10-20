@@ -11,7 +11,7 @@ public struct Cases: LaTeXComponent {
     var content: [Body]
     
     public var latexExpression: String {
-        "\\begin{cases}\(content.map(\.latexExpression).joined(separator: "\\\\"))\\end{cases}"
+        "\\begin{cases}\(content.map(\.latexExpression).joined(separator: " \\\\ "))\\end{cases}"
     }
     
     public struct Body: LaTeXComponent {

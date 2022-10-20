@@ -16,9 +16,9 @@ public struct LaTeXMatrix: LaTeXComponent {
         
         var result = "\\begin{\(matrixName)}"
         
-        for row in contents {
-            result += row.map(\.latexExpression).joined(separator: " & ") + "\\\\"
-        }
+        result += contents.map {
+            $0.map(\.latexExpression).joined(separator: " & ")
+        }.joined(separator: " \\\\ ")
         
         return result + "\\end{\(matrixName)}"
     }
