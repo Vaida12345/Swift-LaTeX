@@ -6,21 +6,14 @@
 //
 
 
-public protocol LaTeXSymbols: LaTeXComponent, CustomStringConvertible {
-    
-}
-
-public extension LaTeXSymbols {
-    var description: String {
-        self.latexExpression
-    }
-}
-
-
 /// The built-in LaTeX symbols.
-public struct LaTeXSymbol: LaTeXSymbols {
+public struct LaTeXSymbol: LaTeXComponent, CustomStringConvertible {
     
     public let latexExpression: String
+    
+    public var description: String {
+        self.latexExpression
+    }
     
     internal init(_ latexExpression: String) {
         self.latexExpression = latexExpression

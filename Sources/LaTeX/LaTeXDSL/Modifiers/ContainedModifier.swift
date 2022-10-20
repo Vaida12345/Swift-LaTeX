@@ -32,4 +32,19 @@ public extension LaTeXComponent {
         self.modifier(ContainedModifier(name: "phantom"))
     }
     
+    func overLined() -> some LaTeXComponent {
+        self.modifier(ContainedModifier(name: "overline"))
+    }
+    
+    func underLined() -> some LaTeXComponent {
+        self.modifier(ContainedModifier(name: "underline"))
+    }
+    
+    func overRightArrowed() -> some LaTeXComponent {
+        self.modifier(ContainedModifier(name: "overrightarrow"))
+    }
+    
+    func overLeftArrowed() -> some LaTeXComponent {
+        self.modifier(ContainedModifier(name: "overleftarrow"))
+    }
 }

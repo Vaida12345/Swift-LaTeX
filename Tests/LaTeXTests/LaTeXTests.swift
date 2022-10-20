@@ -5,7 +5,7 @@ final class LaTesTs: XCTestCase {
     func testExample() async throws {
         let formula = Integral("x", from: "-N", to: "N") { variable in
             Power {
-                "e"
+                log(3)
             } with: {
                 variable
             }

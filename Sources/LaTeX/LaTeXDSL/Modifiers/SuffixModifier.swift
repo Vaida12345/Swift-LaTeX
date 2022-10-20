@@ -6,7 +6,7 @@
 //
 
 
-public struct SuffixModifier: LaTeXModifier {
+private struct SuffixModifier: LaTeXModifier {
     
     private let suffix: String
     

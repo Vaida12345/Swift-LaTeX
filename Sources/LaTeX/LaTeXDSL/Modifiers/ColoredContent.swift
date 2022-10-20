@@ -11,8 +11,8 @@ import SwiftUI
 
 private struct ColoredContent<Content: LaTeXComponent>: LaTeXComponent {
     
-    let color: String
-    let content: Content
+    private let color: String
+    private let content: Content
     
     var latexExpression: String {
         "\\color{\(self.color)} \(content.latexExpression)"

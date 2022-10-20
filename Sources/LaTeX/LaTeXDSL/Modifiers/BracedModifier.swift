@@ -6,11 +6,11 @@
 //
 
 
-struct BracedModifier<T: LaTeXComponent>: LaTeXModifier {
+private struct BracedModifier<T: LaTeXComponent>: LaTeXModifier {
     
-    let position: Position
+    private let position: Position
     
-    let value: Group<T>
+    private let value: Group<T>
     
     func modify(_ component: some LaTeXComponent) -> String {
         "\\\(self.position.rawValue){\(component.latexExpression)}\(position == .overBrace ? "^" : "_")\(value.latexExpression)"

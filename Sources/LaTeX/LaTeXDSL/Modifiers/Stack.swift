@@ -5,7 +5,7 @@
 //  Created by Vaida on 10/19/22.
 //
 
-struct Stackrel<Content: LaTeXComponent>: LaTeXModifier {
+private struct Stackrel<Content: LaTeXComponent>: LaTeXModifier {
     
     private let content: Content
     
@@ -31,7 +31,7 @@ public extension LaTeXComponent {
     
 }
 
-struct Stackbin<Content: LaTeXComponent>: LaTeXModifier {
+private struct Stackbin<Content: LaTeXComponent>: LaTeXModifier {
     
     private let content: Content
     

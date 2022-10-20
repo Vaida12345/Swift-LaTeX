@@ -27,14 +27,14 @@ public struct LargeOperator<LowerBound: LaTeXComponent, UpperBound: LaTeXCompone
         self.body = Group(body)
     }
     
-    public init(_ operator: LargeOperatorOperator, lowerBound: LowerBound, body: Body) where UpperBound == EmptyComponent {
+    public init(_ operator: LargeOperatorOperator, lowerBound: LowerBound, body: Body) where UpperBound == Never {
         self.operator = `operator`
         self.lowerBound = Group(lowerBound)
         self.upperBound = nil
         self.body = Group(body)
     }
     
-    public init(_ operator: LargeOperatorOperator, body: Body) where UpperBound == EmptyComponent, LowerBound == EmptyComponent {
+    public init(_ operator: LargeOperatorOperator, body: Body) where UpperBound == Never, LowerBound == Never {
         self.operator = `operator`
         self.lowerBound = nil
         self.upperBound = nil
