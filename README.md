@@ -81,7 +81,7 @@ Integral("x", from: "-N", to: "N") { variable in
 }
 ```
 
-$$ {R\_\theta}={\begin{bmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{bmatrix}} $$
+$$ {R\_\theta}={\begin{bmatrix}\cos\theta & -\sin\theta \\\\ \sin\theta & \cos\theta\end{bmatrix}} $$
 
 ```swift
 Equals {
