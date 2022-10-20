@@ -19,3 +19,22 @@ public extension LaTeXComponent {
     }
     
 }
+
+public extension LaTeXComponent {
+    
+    func power(_ value: some LaTeXComponent) -> some LaTeXComponent {
+        self ^ value
+    }
+    
+    func transposed(_ value: some LaTeXComponent) -> some LaTeXComponent {
+        self ^ "T"
+    }
+    
+    func prime() -> some LaTeXComponent {
+        Group {
+            self
+            MiscSymbols.prime
+        }
+    }
+    
+}

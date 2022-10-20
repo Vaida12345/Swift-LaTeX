@@ -57,7 +57,7 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
     /// - Parameters:
     ///   - source: The content contained.
     ///   - includeBrackets: A bool determining whether it should be contained in round brackets.
-    public init(includeBrackets: Bool = false, _ source: () -> Source) {
+    public init(includeBrackets: Bool = false, @LaTeXBuilder _ source: () -> Source) {
         self.init(source(), includeBrackets: includeBrackets)
     }
     

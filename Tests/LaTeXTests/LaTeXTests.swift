@@ -3,14 +3,13 @@ import XCTest
 
 final class LaTeXTests: XCTestCase {
     func testExample() async throws {
-        let formula = LaTeXBuilder.build {
-            "E"
-            
-            BinaryRelation.equal
-            
-            "M"
-            *
-            ("c".colored(.red) ^ 2)
+        let formula = LaTeXArgumentMatrix {
+            [
+                ["a", "b"],
+                ["c", "d"]
+            ]
+        } rhs: {
+            ["C", "D".overLeftArrowed()]
         }
         
         print(formula)
