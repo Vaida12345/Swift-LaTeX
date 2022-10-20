@@ -89,7 +89,7 @@ func Integral<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: s
     LargeOperator(.int, lowerBound: lowerBound, upperBound: upperBound, body: {
         LaTeXBuilder.build {
             body(variable)
-            "\\, d\(variable.latexExpression)"
+            "\\, \\mathrm{d}\(variable.latexExpression)"
         }
     }())
 }

@@ -39,4 +39,12 @@ public struct LaTeXView: View {
     public init(formula: String) {
         self.formula = formula
     }
+    
+    public init(formula: some LaTeXComponent) {
+        self.formula = formula.latexExpression
+    }
+    
+    public init(@LaTeXBuilder formula: () -> some LaTeXComponent) {
+        self.formula = formula().latexExpression
+    }
 }

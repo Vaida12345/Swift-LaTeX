@@ -16,6 +16,10 @@ struct Spacer: LaTeXComponent {
     
     static let quad = Spacer("\\quad")
     static let qquad = Spacer("\\qquad")
-    static let tilde = Spacer("~")
     static let and = Spacer("&")
+    static let comma = Spacer("\\,")
+    static let colon = Spacer("\\:")
+    static let semicolon = Spacer("\\;")
+    static let space = Spacer("\\ ")
+    static let exclamation = Spacer("\\!")
 }

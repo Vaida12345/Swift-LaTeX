@@ -77,7 +77,6 @@ Integral("x", from: "-N", to: "N") { variable in
     } with: {
         variable
     }
-
 }
 ```
 

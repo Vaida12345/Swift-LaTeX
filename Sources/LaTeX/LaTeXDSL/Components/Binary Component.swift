@@ -25,7 +25,7 @@ public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS
     }
     
     public func not() -> some LaTeXComponent {
-        BinaryComponent<LHS, LaTeXModifiedContent<Operator, NotComponent>, RHS>(lhs: self.lhs.source, operator: self.operator.not, rhs: self.rhs.source)
+        BinaryComponent<LHS, LaTeXModifiedContent<Operator, PrefixModifier>, RHS>(lhs: self.lhs.source, operator: self.operator.not, rhs: self.rhs.source)
     }
     
 }

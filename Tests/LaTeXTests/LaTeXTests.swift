@@ -1,23 +1,12 @@
 import XCTest
 @testable import LaTeX
 
-final class LaTeXTests: XCTestCase {
+final class LaTesTs: XCTestCase {
     func testExample() async throws {
         let formula = LaTeXBuilder.build {
-            Equals {
-                Subscript {
-                    "R"
-                } with: {
-                    theta
-                }
-            } with: {
-                LaTeXMatrix {
-                    [
-                        [cos(theta), -sin(theta)],
-                        [sin(theta),  cos(theta)]
-                    ]
-                }
-            }
+            "a+b+c+\\cdots+d"
+                .underBraced("n")
+                .font(.mathcal)
         }
         
         print(formula)

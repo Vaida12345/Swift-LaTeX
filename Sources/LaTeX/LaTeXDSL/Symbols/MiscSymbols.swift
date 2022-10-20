@@ -54,3 +54,5 @@ public let Diamond = LaTeXSymbol("\\Diamond")
 public let surd = LaTeXSymbol("\\surd")
 public let spadeSuit = LaTeXSymbol("\\spadesuit")
 public let sharp = LaTeXSymbol("\\sharp")
+
+public let newLine = LaTeXSymbol("\\\\")
