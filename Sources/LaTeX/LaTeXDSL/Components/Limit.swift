@@ -8,7 +8,7 @@
 
 public struct Limit<Variable: LaTeXComponent, Bound: LaTeXComponent, Body: LaTeXComponent>: LaTeXComponent {
     
-    private let lowerBound: Group<BinaryComponent<Variable, Arrow, Bound>>
+    private let lowerBound: Group<BinaryComponent<Variable, LaTeXSymbol, Bound>>
     
     private let body: Body
     
@@ -18,7 +18,7 @@ public struct Limit<Variable: LaTeXComponent, Bound: LaTeXComponent, Body: LaTeX
     
     public init(_ variable: Variable, to limit: Bound, body: (_ variable: Variable) -> Body) {
         self.lowerBound = Group {
-            BinaryComponent(lhs: variable, operator: Arrow.to, rhs: limit)
+            BinaryComponent(lhs: variable, operator: rightArrow, rhs: limit)
         }
         self.body = body(variable)
     }

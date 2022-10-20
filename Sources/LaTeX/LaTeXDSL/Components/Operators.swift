@@ -54,6 +54,7 @@ public extension LaTeXComponent {
         BinaryComponent(lhs: lhs, operator: lessEqual, rhs: rhs)
     }
     
+    @available(*, unavailable, message: "Use Power instead.")
     static func ^ (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
         BinaryComponent(lhs: lhs, operator: "^", rhs: rhs)
     }
@@ -79,4 +80,12 @@ public func Division(@LaTeXBuilder lhs: () -> some LaTeXComponent, @LaTeXBuilder
 
 public func Equals(@LaTeXBuilder lhs: () -> some LaTeXComponent, @LaTeXBuilder with rhs: () -> some LaTeXComponent) -> some LaTeXComponent {
     BinaryComponent(lhs: lhs(), operator: equal, rhs: rhs())
+}
+
+public func Power(@LaTeXBuilder lhs: () -> some LaTeXComponent, @LaTeXBuilder with rhs: () -> some LaTeXComponent) -> some LaTeXComponent {
+    BinaryComponent(lhs: lhs(), operator: "^", rhs: rhs())
+}
+
+public func Subscript(@LaTeXBuilder lhs: () -> some LaTeXComponent, @LaTeXBuilder with rhs: () -> some LaTeXComponent) -> some LaTeXComponent {
+    BinaryComponent(lhs: lhs(), operator: "_", rhs: rhs())
 }

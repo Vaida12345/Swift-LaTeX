@@ -41,7 +41,7 @@ public struct LargeOperator<LowerBound: LaTeXComponent, UpperBound: LaTeXCompone
         self.body = Group(body)
     }
     
-    public init<Variable: LaTeXComponent, T: LaTeXComponent>(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: T, to upperBound: UpperBound, body: (_ variable: Variable) -> Body) where LowerBound == BinaryComponent<Variable, LaTeXSymbol, T> {
+    public init<Variable: LaTeXComponent, T: LaTeXComponent>(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: T, to upperBound: UpperBound, @LaTeXBuilder body: (_ variable: Variable) -> Body) where LowerBound == BinaryComponent<Variable, LaTeXSymbol, T> {
         self.init(`operator`, lowerBound: BinaryComponent(lhs: variable, operator: equal, rhs: lowerBound), upperBound: upperBound, body: body(variable))
     }
     
@@ -65,4 +65,26 @@ public enum LargeOperatorOperator: String {
     case bigotimes
     case bigodot
     case biguplus
+}
+
+
+/// The sum.
+///
+/// - Note: For more operations, use ``LargeOperator``.
+func Sum<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
+    LargeOperator(.sum, variable, from: lowerBound, to: upperBound, body: body)
+}
+
+/// The prod.
+///
+/// - Note: For more operations, use ``LargeOperator``.
+func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
+    LargeOperator(.prod, variable, from: lowerBound, to: upperBound, body: body)
+}
+
+/// The int.
+///
+/// - Note: For more operations, use ``LargeOperator``.
+func Integral<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
+    LargeOperator(.int, variable, from: lowerBound, to: upperBound, body: body)
 }

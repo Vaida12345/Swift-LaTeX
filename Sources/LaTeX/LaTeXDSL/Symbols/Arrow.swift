@@ -6,51 +6,45 @@
 //
 
 
-struct Arrow: LaTeXComponent {
-    
-    public let latexExpression: String
-    
-    private init(_ latexExpression: String) {
-        self.latexExpression = latexExpression
-    }
-    
-    
-    public static let leftArrow = Arrow("\\leftarrow")
-    public static let gets = Arrow("\\gets")
-    public static let rightArrow = Arrow("\\rightarrow")
-    public static let to = Arrow("\\to")
-    public static let leftRightArrow = Arrow("\\leftrightarrow")
-    public static let LeftArrow = Arrow("\\Leftarrow")
-    public static let RightArrow = Arrow("\\Rightarrow")
-    public static let LeftRightArrow = Arrow("\\Leftrightarrow")
-    public static let mapsto = Arrow("\\mapsto")
-    public static let hookLeftArrow = Arrow("\\hookleftarrow")
-    public static let leftHarpoonUp = Arrow("\\leftharpoonup")
-    public static let leftHarpoonDown = Arrow("\\leftharpoondown")
-    public static let rightLeftHarpoons = Arrow("\\rightleftharpoons")
-    
-    public static let longLeftArrow = Arrow("\\longleftarrow")
-    public static let longRightArrow = Arrow("\\longrightarrow")
-    public static let longLeftRightArrow = Arrow("\\longleftrightarrow")
-    public static let LongLeftArrow = Arrow("\\Longleftarrow")
-    public static let LongRightArrow = Arrow("\\Longrightarrow")
-    public static let LongLeftRightArrow = Arrow("\\Longleftrightarrow")
-    public static let longMapsto = Arrow("\\longmapsto")
-    public static let hookRightArrow = Arrow("\\hookrightarrow")
-    public static let rightHarpoonUp = Arrow("\\rightharpoonup")
-    public static let rightHarpoonDown = Arrow("\\rightharpoondown")
-    public static let iff = Arrow("\\iff")
-    
-    public static let upArrow = Arrow("\\uparrow")
-    public static let downArrow = Arrow("\\downarrow")
-    public static let upDownArrow = Arrow("\\updownarrow")
-    public static let UpArrow = Arrow("\\Uparrow")
-    public static let DownArrow = Arrow("\\Downarrow")
-    public static let UpDownArrow = Arrow("\\Updownarrow")
-    public static let neArrow = Arrow("\\nearrow")
-    public static let seArrow = Arrow("\\searrow")
-    public static let swArrow = Arrow("\\swarrow")
-    public static let nwArrow = Arrow("\\nwarrow")
-    public static let leadsTo = Arrow("\\leadsto")
-    
-}
+@available(*, unavailable, renamed: "rightArrow")
+public let to = LaTeXSymbol("\\to")
+
+@available(*, unavailable, renamed: "leftArrow")
+public let gets = LaTeXSymbol("\\gets")
+
+
+public let leftArrow = LaTeXSymbol("\\leftarrow")
+public let rightArrow = LaTeXSymbol("\\rightarrow")
+public let leftRightArrow = LaTeXSymbol("\\leftrightarrow")
+public let LeftArrow = LaTeXSymbol("\\Leftarrow")
+public let RightArrow = LaTeXSymbol("\\Rightarrow")
+public let LeftRightArrow = LaTeXSymbol("\\Leftrightarrow")
+public let mapsto = LaTeXSymbol("\\mapsto")
+public let hookLeftArrow = LaTeXSymbol("\\hookleftarrow")
+public let leftHarpoonUp = LaTeXSymbol("\\leftharpoonup")
+public let leftHarpoonDown = LaTeXSymbol("\\leftharpoondown")
+public let rightLeftHarpoons = LaTeXSymbol("\\rightleftharpoons")
+
+public let longLeftArrow = LaTeXSymbol("\\longleftarrow")
+public let longRightArrow = LaTeXSymbol("\\longrightarrow")
+public let longLeftRightArrow = LaTeXSymbol("\\longleftrightarrow")
+public let LongLeftArrow = LaTeXSymbol("\\Longleftarrow")
+public let LongRightArrow = LaTeXSymbol("\\Longrightarrow")
+public let LongLeftRightArrow = LaTeXSymbol("\\Longleftrightarrow")
+public let longMapsto = LaTeXSymbol("\\longmapsto")
+public let hookRightArrow = LaTeXSymbol("\\hookrightarrow")
+public let rightHarpoonUp = LaTeXSymbol("\\rightharpoonup")
+public let rightHarpoonDown = LaTeXSymbol("\\rightharpoondown")
+public let iff = LaTeXSymbol("\\iff")
+
+public let upArrow = LaTeXSymbol("\\uparrow")
+public let downArrow = LaTeXSymbol("\\downarrow")
+public let upDownArrow = LaTeXSymbol("\\updownarrow")
+public let UpArrow = LaTeXSymbol("\\Uparrow")
+public let DownArrow = LaTeXSymbol("\\Downarrow")
+public let UpDownArrow = LaTeXSymbol("\\Updownarrow")
+public let neArrow = LaTeXSymbol("\\nearrow")
+public let seArrow = LaTeXSymbol("\\searrow")
+public let swArrow = LaTeXSymbol("\\swarrow")
+public let nwArrow = LaTeXSymbol("\\nwarrow")
+public let leadsTo = LaTeXSymbol("\\leadsto")
