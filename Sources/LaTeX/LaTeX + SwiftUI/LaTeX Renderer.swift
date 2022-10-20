@@ -118,7 +118,7 @@ internal struct LaTeXRenderer: NSViewRepresentable {
 }
 
 
-fileprivate extension Color {
+internal extension Color {
     
     var animatableData: [Double] {
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)

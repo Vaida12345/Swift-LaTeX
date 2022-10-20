@@ -4,15 +4,13 @@ import XCTest
 final class LaTeXTests: XCTestCase {
     func testExample() async throws {
         let formula = LaTeXBuilder.build {
-            Greek.varepsilon * sqrt(Limit("x", to: MiscSymbols.infinity) { variable in
-                variable ^ 2
-            })
+            "E"
             
             BinaryRelation.equal
-                .not()
-                .stackrel("?")
             
-            0
+            "M"
+            *
+            ("c".colored(.red) ^ 2)
         }
         
         print(formula)
