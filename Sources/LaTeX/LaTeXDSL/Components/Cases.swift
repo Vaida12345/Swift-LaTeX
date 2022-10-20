@@ -8,34 +8,34 @@
 
 public struct Cases: LaTeXComponent {
     
-    var content: [Body<Any>]
+    var content: [Body]
     
     public var latexExpression: String {
         "\\begin{cases}\(content.map(\.latexExpression).joined(separator: "\\\\"))\\end{cases}"
     }
     
-    public struct Body<T>: LaTeXComponent {
+    public struct Body: LaTeXComponent {
         
-        var contents: TupleComponents<T>
+        var contents: [any LaTeXComponent]
         
         public var latexExpression: String {
-            contents.latexExpression
+            contents.map(\.latexExpression).joined(separator: " ")
         }
         
-        public init(@LaTeXBuilder contents: () -> TupleComponents<T>) {
-            self.contents = contents()
+        public init(@LaTeXBuilder contents: () -> some LaTeXComponent) {
+            self.contents = [contents()]
         }
         
-        public static func caseIf<T, W>(@LaTeXBuilder contents: () -> TupleComponents<T>, @LaTeXBuilder if condition: () -> TupleComponents<W>) -> Body<(TupleComponents<T>, String, TupleComponents<W>)> {
-            .init {
+        public static func caseIf(@LaTeXBuilder contents: () -> some LaTeXComponent, @LaTeXBuilder condition: () -> some LaTeXComponent) -> Body {
+            Body {
                 contents()
-                " & "
+                "&"
                 condition()
             }
         }
     }
     
-    init(content: () -> [Body<Any>]) {
+    init(content: () -> [Body]) {
         self.content = content()
     }
     

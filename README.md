@@ -32,20 +32,29 @@ $${\nabla\times{\overrightarrow{\mathbf{B}}}}-{\frac{1}{C}} {\frac{\delta \overr
 
 ```swift
 let formula = LaTeXBuilder.build {
-    nabla * LaTeXT("B").font(.mathbf).overRightArrowed()
-    -
-    Fraction(1, "C")
-    Fraction {
-        delta
-        LaTeXT("E").font(.mathbf).overRightArrowed()
-    } denominator: {
-        delta
-        "t"
+    Equals {
+        Subtraction {
+            Multiplication {
+                nabla
+            } by: {
+                LaTeXT("B").font(.mathbf).overRightArrowed()
+            }
+        } by: {
+            Fraction(1, "C")
+        }
+        
+        Fraction {
+            delta
+            LaTeXT("E").font(.mathbf).overRightArrowed()
+        } denominator: {
+            delta
+            "t"
+        }
+    } with: {
+        4
+        pi
+        rho
     }
-    ==
-    4
-    pi
-    rho
 }
 ```
 
