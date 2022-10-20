@@ -68,7 +68,7 @@ print(formula.latexExpression)
 // {{\nabla\times{\overrightarrow{\mathbf{B}}}}-{{\color{3a81f6} \frac{1}{C}}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}={4 \pi \rho}
 ```
 
-$$ \int_{-N}^N {e^x \, dx} $$
+$$ \int_{-N}^N {e^x \\, dx} $$
 
 ```swift
 Integral("x", from: "-N", to: "N") { variable in
