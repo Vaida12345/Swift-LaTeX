@@ -1,66 +1,55 @@
 //
-//  Greek.swift
+//  LaTeXSymbol.swift
 //  
 //
 //  Created by Vaida on 10/19/22.
 //
 
 
-/// The Greek symbols.
-public struct Greek: LaTeXComponent {
-    
-    public let latexExpression: String
-    
-    private init(_ latexExpression: String) {
-        self.latexExpression = latexExpression
-    }
-    
-    
-    public static let alpha = Greek("\\alpha")
-    public static let beta  = Greek("\\beta")
-    public static let gamma = Greek("\\gamma")
-    public static let delta = Greek("\\delta")
-    public static let epsilon = Greek("\\epsilon")
-    public static let varepsilon = Greek("\\varepsilon")
-    public static let zeta = Greek("\\zeta")
-    public static let eta = Greek("\\eta")
-    
-    public static let theta = Greek("\\theta")
-    public static let vartheta = Greek("\\vartheta")
-    public static let iota = Greek("\\iota")
-    public static let kappa = Greek("\\kappa")
-    public static let lambda = Greek("\\lambda")
-    public static let mu = Greek("\\mu")
-    public static let nu = Greek("\\nu")
-    public static let xi = Greek("\\xi")
-    
-    public static let o = Greek("o")
-    public static let pi = Greek("\\pi")
-    public static let varpi = Greek("\\varpi")
-    public static let rho = Greek("\\rho")
-    public static let varrho = Greek("\\varrho")
-    public static let sigma = Greek("\\sigma")
-    public static let varsigma = Greek("\\varsigma")
-    public static let tau = Greek("\\tau")
-    
-    public static let upsilon = Greek("\\upsilon")
-    public static let phi = Greek("\\phi")
-    public static let varphi = Greek("\\varphi")
-    public static let chi = Greek("\\chi")
-    public static let psi = Greek("\\psi")
-    public static let omega = Greek("\\omega")
-    
-    
-    public static let Gamma = Greek("\\Gamma")
-    public static let Delta = Greek("\\Delta")
-    public static let Theta = Greek("\\Theta")
-    public static let Lambda = Greek("\\Lambda")
-    public static let Xi = Greek("\\Xi")
-    public static let Pi = Greek("\\Pi")
-    
-    public static let Sigma = Greek("\\Sigma")
-    public static let Upsilon = Greek("\\Upsilon")
-    public static let Phi = Greek("\\Phi")
-    public static let Psi = Greek("\\Psi")
-    public static let Omega = Greek("\\Omegab")
-}
+public let alpha = LaTeXSymbol("\\alpha")
+public let beta  = LaTeXSymbol("\\beta")
+public let gamma = LaTeXSymbol("\\gamma")
+public let delta = LaTeXSymbol("\\delta")
+public let epsilon = LaTeXSymbol("\\epsilon")
+public let varepsilon = LaTeXSymbol("\\varepsilon")
+public let zeta = LaTeXSymbol("\\zeta")
+public let eta = LaTeXSymbol("\\eta")
+
+public let theta = LaTeXSymbol("\\theta")
+public let vartheta = LaTeXSymbol("\\vartheta")
+public let iota = LaTeXSymbol("\\iota")
+public let kappa = LaTeXSymbol("\\kappa")
+public let lambda = LaTeXSymbol("\\lambda")
+public let mu = LaTeXSymbol("\\mu")
+public let nu = LaTeXSymbol("\\nu")
+public let xi = LaTeXSymbol("\\xi")
+
+public let o = LaTeXSymbol("o")
+public let pi = LaTeXSymbol("\\pi")
+public let varpi = LaTeXSymbol("\\varpi")
+public let rho = LaTeXSymbol("\\rho")
+public let varrho = LaTeXSymbol("\\varrho")
+public let sigma = LaTeXSymbol("\\sigma")
+public let varsigma = LaTeXSymbol("\\varsigma")
+public let tau = LaTeXSymbol("\\tau")
+
+public let upsilon = LaTeXSymbol("\\upsilon")
+public let phi = LaTeXSymbol("\\phi")
+public let varphi = LaTeXSymbol("\\varphi")
+public let chi = LaTeXSymbol("\\chi")
+public let psi = LaTeXSymbol("\\psi")
+public let omega = LaTeXSymbol("\\omega")
+
+
+public let Gamma = LaTeXSymbol("\\Gamma")
+public let Delta = LaTeXSymbol("\\Delta")
+public let Theta = LaTeXSymbol("\\Theta")
+public let Lambda = LaTeXSymbol("\\Lambda")
+public let Xi = LaTeXSymbol("\\Xi")
+public let Pi = LaTeXSymbol("\\Pi")
+
+public let Sigma = LaTeXSymbol("\\Sigma")
+public let Upsilon = LaTeXSymbol("\\Upsilon")
+public let Phi = LaTeXSymbol("\\Phi")
+public let Psi = LaTeXSymbol("\\Psi")
+public let Omega = LaTeXSymbol("\\Omegab")

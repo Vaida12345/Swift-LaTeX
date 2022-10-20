@@ -19,43 +19,43 @@ infix operator --
 public extension LaTeXComponent {
     
     static func + (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryOperator.plus, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: plus, rhs: rhs)
     }
     
     static func - (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryOperator.minus, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: minus, rhs: rhs)
     }
     
     static func * (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryOperator.times, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: times, rhs: rhs)
     }
     
     static func / (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryOperator.divide, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: divide, rhs: rhs)
     }
     
     static func == (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryRelation.equal, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: equal, rhs: rhs)
     }
     
     static func != (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryRelation.equal.not(), rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: equal.not, rhs: rhs)
     }
     
     static func > (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryRelation.greater, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: greater, rhs: rhs)
     }
     
     static func >= (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryRelation.greaterEqual, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: greaterEqual, rhs: rhs)
     }
     
     static func < (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryRelation.less, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: less, rhs: rhs)
     }
     
     static func <= (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: BinaryRelation.lessEqual, rhs: rhs)
+        BinaryComponent(lhs: lhs, operator: lessEqual, rhs: rhs)
     }
     
     static func ^ (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {

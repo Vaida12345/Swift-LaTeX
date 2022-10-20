@@ -21,7 +21,7 @@ public extension LaTeXComponent {
     ///
     /// - Parameters:
     ///   - modifier: The accent modifier.
-    func not() -> some LaTeXComponent {
+    var not: some LaTeXComponent {
         LaTeXModifiedContent(content: self, modifier: NotComponent())
     }
     

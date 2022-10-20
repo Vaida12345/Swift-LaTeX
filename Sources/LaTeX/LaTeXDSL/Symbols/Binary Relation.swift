@@ -6,75 +6,65 @@
 //
 
 
-public struct BinaryRelation: LaTeXComponent {
-    
-    public let latexExpression: String
-    
-    private init(_ latexExpression: String) {
-        self.latexExpression = latexExpression
-    }
-    
-    
-    @available(*, unavailable, renamed: "lessLess")
-    public static let ll = BinaryRelation("\\ll")
-    
-    @available(*, unavailable, renamed: "lessEqual")
-    public static let le = BinaryRelation("\\le")
-    
-    @available(*, unavailable, renamed: "greaterEqual")
-    public static let ge = BinaryRelation("\\ge")
-    
-    @available(*, unavailable, renamed: "greaterGreater")
-    public static let gg = BinaryRelation("\\gg")
-    
-    @available(*, unavailable, renamed: "notEqual")
-    public static let ne = BinaryRelation("\\ne")
-    
-    
-    
-    public static let less = BinaryRelation("<")
-    public static let lessEqual = BinaryRelation("\\le")
-    public static let lessLess = BinaryRelation("\\ll")
-    public static let prec = BinaryRelation("\\prec")
-    public static let precEqual = BinaryRelation("\\preceq")
-    public static let subset = BinaryRelation("\\subset")
-    public static let subsetEqual = BinaryRelation("\\subseteq")
-    public static let sqsubset = BinaryRelation("\\sqsubset")
-    public static let sqsubsetEqual = BinaryRelation("\\sqsubseteq")
-    public static let `in` = BinaryRelation("\\in")
-    public static let vdash = BinaryRelation("\\vdash")
-    public static let mid = BinaryRelation("\\mid")
-    public static let smile = BinaryRelation("\\smile")
-    public static let colon = BinaryRelation(":")
-    
-    
-    public static let greater = BinaryRelation(">")
-    public static let greaterEqual = BinaryRelation("\\ge")
-    public static let greaterGreater = BinaryRelation("\\gg")
-    public static let succ = BinaryRelation("\\succ")
-    public static let succEqual = BinaryRelation("\\succeq")
-    public static let supset = BinaryRelation("\\supset")
-    public static let supsetEqual = BinaryRelation("\\supseteq")
-    public static let sqsupset = BinaryRelation("\\sqsupset")
-    public static let sqsupsetEqual = BinaryRelation("\\sqsupseteq")
-    public static let owns = BinaryRelation("\\owns")
-    public static let dashv = BinaryRelation("\\dashv")
-    public static let parallel = BinaryRelation("\\parallel")
-    public static let frown = BinaryRelation("\\frown")
-    public static let notIn = BinaryRelation("\\notin")
-    
-    public static let equal = BinaryRelation("=")
-    public static let equiv = BinaryRelation("\\equiv")
-    public static let doteq = BinaryRelation("\\doteq")
-    public static let sim = BinaryRelation("\\sim")
-    public static let simeq = BinaryRelation("\\simeq")
-    public static let approx = BinaryRelation("\\approx")
-    public static let cong = BinaryRelation("\\cong")
-    public static let Join = BinaryRelation("\\Join")
-    public static let bowtie = BinaryRelation("\\bowtie")
-    public static let propto = BinaryRelation("\\propto")
-    public static let models = BinaryRelation("\\models")
-    public static let perp = BinaryRelation("\\perp")
-    public static let asymp = BinaryRelation("\\asymp")
-    public static let notEqual = BinaryRelation("\\ne")
-}
+@available(*, unavailable, renamed: "lessLess")
+public let ll = LaTeXSymbol("\\ll")
+
+@available(*, unavailable, renamed: "lessEqual")
+public let le = LaTeXSymbol("\\le")
+
+@available(*, unavailable, renamed: "greaterEqual")
+public let ge = LaTeXSymbol("\\ge")
+
+@available(*, unavailable, renamed: "greaterGreater")
+public let gg = LaTeXSymbol("\\gg")
+
+@available(*, unavailable, renamed: "notEqual")
+public let ne = LaTeXSymbol("\\ne")
+
+
+
+public let less = LaTeXSymbol("<")
+public let lessEqual = LaTeXSymbol("\\le")
+public let lessLess = LaTeXSymbol("\\ll")
+public let prec = LaTeXSymbol("\\prec")
+public let precEqual = LaTeXSymbol("\\preceq")
+public let subset = LaTeXSymbol("\\subset")
+public let subsetEqual = LaTeXSymbol("\\subseteq")
+public let sqsubset = LaTeXSymbol("\\sqsubset")
+public let sqsubsetEqual = LaTeXSymbol("\\sqsubseteq")
+public let `in` = LaTeXSymbol("\\in")
+public let vdash = LaTeXSymbol("\\vdash")
+public let mid = LaTeXSymbol("\\mid")
+public let smile = LaTeXSymbol("\\smile")
+public let colon = LaTeXSymbol(":")
+
+
+public let greater = LaTeXSymbol(">")
+public let greaterEqual = LaTeXSymbol("\\ge")
+public let greaterGreater = LaTeXSymbol("\\gg")
+public let succ = LaTeXSymbol("\\succ")
+public let succEqual = LaTeXSymbol("\\succeq")
+public let supset = LaTeXSymbol("\\supset")
+public let supsetEqual = LaTeXSymbol("\\supseteq")
+public let sqsupset = LaTeXSymbol("\\sqsupset")
+public let sqsupsetEqual = LaTeXSymbol("\\sqsupseteq")
+public let owns = LaTeXSymbol("\\owns")
+public let dashv = LaTeXSymbol("\\dashv")
+public let parallel = LaTeXSymbol("\\parallel")
+public let frown = LaTeXSymbol("\\frown")
+public let notIn = LaTeXSymbol("\\notin")
+
+public let equal = LaTeXSymbol("=")
+public let equiv = LaTeXSymbol("\\equiv")
+public let doteq = LaTeXSymbol("\\doteq")
+public let sim = LaTeXSymbol("\\sim")
+public let simeq = LaTeXSymbol("\\simeq")
+public let approx = LaTeXSymbol("\\approx")
+public let cong = LaTeXSymbol("\\cong")
+public let Join = LaTeXSymbol("\\Join")
+public let bowtie = LaTeXSymbol("\\bowtie")
+public let propto = LaTeXSymbol("\\propto")
+public let models = LaTeXSymbol("\\models")
+public let perp = LaTeXSymbol("\\perp")
+public let asymp = LaTeXSymbol("\\asymp")
+public let notEqual = LaTeXSymbol("\\ne")

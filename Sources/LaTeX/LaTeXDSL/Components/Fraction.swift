@@ -16,12 +16,12 @@ public struct Fraction<Numerator: LaTeXComponent, Denominator: LaTeXComponent>: 
         "\\frac{\(self.numerator.latexExpression)}{\(self.denominator.latexExpression)}"
     }
     
-    public init(numerator: Numerator, denominator: Denominator) {
+    public init(_ numerator: Numerator, _ denominator: Denominator) {
         self.numerator = numerator
         self.denominator = denominator
     }
     
-    public init(numerator: () -> Numerator, denominator: () -> Denominator) {
+    public init(@LaTeXBuilder numerator: () -> Numerator, @LaTeXBuilder denominator: () -> Denominator) {
         self.numerator = numerator()
         self.denominator = denominator()
     }

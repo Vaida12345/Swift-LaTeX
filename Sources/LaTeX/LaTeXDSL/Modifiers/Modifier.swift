@@ -30,10 +30,10 @@ public extension LaTeXComponent {
         self ^ "T"
     }
     
-    func prime() -> some LaTeXComponent {
+    func primed() -> some LaTeXComponent {
         Group {
             self
-            MiscSymbols.prime
+            prime
         }
     }
     

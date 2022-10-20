@@ -16,7 +16,7 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
     public var latexExpression: String {
         var shouldIncludeBrackets: Bool {
             if source is Double || source is Int || source is String { return false }
-            if source is Arrow || source is BinaryRelation || source is BinaryOperator || source is Greek || source is MiscSymbols { return false }
+            if source is Arrow || source is LaTeXSymbol { return false }
             
             return true
         }

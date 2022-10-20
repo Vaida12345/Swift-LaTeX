@@ -41,8 +41,8 @@ public struct LargeOperator<LowerBound: LaTeXComponent, UpperBound: LaTeXCompone
         self.body = Group(body)
     }
     
-    public init<Variable: LaTeXComponent, T: LaTeXComponent>(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: T, to upperBound: UpperBound, body: (_ variable: Variable) -> Body) where LowerBound == BinaryComponent<Variable, BinaryRelation, T> {
-        self.init(`operator`, lowerBound: BinaryComponent(lhs: variable, operator: BinaryRelation.equal, rhs: lowerBound), upperBound: upperBound, body: body(variable))
+    public init<Variable: LaTeXComponent, T: LaTeXComponent>(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: T, to upperBound: UpperBound, body: (_ variable: Variable) -> Body) where LowerBound == BinaryComponent<Variable, LaTeXSymbol, T> {
+        self.init(`operator`, lowerBound: BinaryComponent(lhs: variable, operator: equal, rhs: lowerBound), upperBound: upperBound, body: body(variable))
     }
     
 }
