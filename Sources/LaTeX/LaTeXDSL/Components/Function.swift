@@ -28,7 +28,7 @@ struct Function<Source: LaTeXComponent>: LaTeXComponent {
     
     var latexExpression: String {
         if let index {
-            return "\\\(name -- index)\(self.source.latexExpression)"
+            return "\\\(name)_\(index)\(self.source.latexExpression)"
         } else {
             return "\\\(name)\(self.source.latexExpression)"
         }

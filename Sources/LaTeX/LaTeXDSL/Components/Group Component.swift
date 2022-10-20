@@ -9,7 +9,7 @@
 /// A group of LaTeX components.
 public struct Group<Source: LaTeXComponent>: LaTeXComponent {
     
-    private let source: Source
+    internal let source: Source
     
     private let includeBrackets: Bool
     

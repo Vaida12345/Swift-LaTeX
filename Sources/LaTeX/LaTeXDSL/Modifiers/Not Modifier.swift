@@ -6,9 +6,9 @@
 //
 
 
-struct NotComponent: LaTeXModifier {
+public struct NotComponent: LaTeXModifier {
     
-    func modify(_ component: some LaTeXComponent) -> String {
+    public func modify(_ component: some LaTeXComponent) -> String {
         "\\not \(component.latexExpression)"
     }
     
@@ -21,7 +21,7 @@ public extension LaTeXComponent {
     ///
     /// - Parameters:
     ///   - modifier: The accent modifier.
-    var not: some LaTeXComponent {
+    var not: LaTeXModifiedContent<Self, NotComponent> {
         LaTeXModifiedContent(content: self, modifier: NotComponent())
     }
     

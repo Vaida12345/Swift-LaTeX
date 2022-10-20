@@ -13,60 +13,6 @@ public protocol LaTeXComponent {
     var latexExpression: String { get }
     
 }
-
-infix operator --
-
-public extension LaTeXComponent {
-    
-    static func + (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: plus, rhs: rhs)
-    }
-    
-    static func - (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: minus, rhs: rhs)
-    }
-    
-    static func * (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: times, rhs: rhs)
-    }
-    
-    static func / (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: divide, rhs: rhs)
-    }
-    
-    static func == (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: equal, rhs: rhs)
-    }
-    
-    static func != (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: equal.not, rhs: rhs)
-    }
-    
-    static func > (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: greater, rhs: rhs)
-    }
-    
-    static func >= (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: greaterEqual, rhs: rhs)
-    }
-    
-    static func < (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: less, rhs: rhs)
-    }
-    
-    static func <= (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: lessEqual, rhs: rhs)
-    }
-    
-    static func ^ (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: "^", rhs: rhs)
-    }
-    
-    static func -- (lhs: Self, rhs: some LaTeXComponent) -> some LaTeXComponent {
-        BinaryComponent(lhs: lhs, operator: "_", rhs: rhs)
-    }
-    
-}
  
 extension String: LaTeXComponent {
     

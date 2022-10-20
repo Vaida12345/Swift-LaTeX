@@ -14,7 +14,7 @@ public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS
     
     private let rhs: Group<RHS>
     
-    internal init(lhs: LHS, operator: Operator, rhs: RHS) {
+    public init(lhs: LHS, operator: Operator, rhs: RHS) {
         self.lhs = Group(lhs)
         self.operator = `operator`
         self.rhs = Group(rhs)
@@ -22,6 +22,10 @@ public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS
     
     public var latexExpression: String {
         lhs.latexExpression + self.operator.latexExpression + rhs.latexExpression
+    }
+    
+    public func not() -> some LaTeXComponent {
+        BinaryComponent<LHS, LaTeXModifiedContent<Operator, NotComponent>, RHS>(lhs: self.lhs.source, operator: self.operator.not, rhs: self.rhs.source)
     }
     
 }
