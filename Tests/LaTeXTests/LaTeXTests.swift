@@ -3,10 +3,12 @@ import XCTest
 
 final class LaTesTs: XCTestCase {
     func testExample() async throws {
-        let formula = LaTeXBuilder.build {
-            "a+b+c+\\cdots+d"
-                .underBraced("n")
-                .font(.mathcal)
+        let formula = Integral("x", from: "-N", to: "N") { variable in
+            Power {
+                "e"
+            } with: {
+                variable
+            }
         }
         
         print(formula)

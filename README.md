@@ -28,7 +28,7 @@ As a javascript package was used to render LaTeX, the Outgoing network Connectio
 
 This part was designed with the goal of writing LaTeX the way you write SwiftUI.
 
-$${\nabla\times{\overrightarrow{\mathbf{B}}}}-{\frac{1}{C}} {\frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}=4 \pi \rho$$
+$$ {{\nabla\times{\overrightarrow{\mathbf{B}}}}-{{\color{3a81f6} \frac{1}{C}}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}={4 \pi \rho} $$
 
 ```swift
 let formula = LaTeXBuilder.build {
@@ -37,7 +37,7 @@ let formula = LaTeXBuilder.build {
             Multiplication {
                 nabla
             } by: {
-                LaTeXT("B").font(.mathbf).overRightArrowed()
+                "B".font(.mathbf).overRightArrowed()
             }
         } by: {
             Fraction(1, "C")
@@ -46,7 +46,7 @@ let formula = LaTeXBuilder.build {
         
         Fraction {
             delta
-            LaTeXT("E").font(.mathbf).overRightArrowed()
+            "E".font(.mathbf).overRightArrowed()
         } denominator: {
             delta
             "t"
@@ -68,7 +68,7 @@ print(formula.latexExpression)
 // {{\nabla\times{\overrightarrow{\mathbf{B}}}}-{{\color{3a81f6} \frac{1}{C}}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}={4 \pi \rho}
 ```
 
-$$ \int_{-N}^N {e^x \\, dx} $$
+$$ \int\_{-N}^N {e^x \\, \mathrm{d}x} $$
 
 ```swift
 Integral("x", from: "-N", to: "N") { variable in
