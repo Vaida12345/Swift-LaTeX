@@ -160,7 +160,7 @@ public struct LaTeXBuilder {
         }
     }
     
-    public static func build(@LaTeXBuilder _ body: () -> LaTeXComponent) -> LaTeXComponent {
+    public static func build(@LaTeXBuilder _ body: () -> some LaTeXComponent) -> some LaTeXComponent {
         body()
     }
     

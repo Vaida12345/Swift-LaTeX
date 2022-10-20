@@ -41,6 +41,7 @@ let formula = LaTeXBuilder.build {
             }
         } by: {
             Fraction(1, "C")
+                .colored(.blue)
         }
         
         Fraction {
@@ -64,7 +65,39 @@ print(formula)
 // TupleComponents<...>(...)
 
 print(formula.latexExpression)
-// {\nabla\times{\overrightarrow{\mathbf{B}}}}-{\frac{1}{C}} {\frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}=4 \pi \rho
+// {{\nabla\times{\overrightarrow{\mathbf{B}}}}-{{\color{3a81f6} \frac{1}{C}}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}={4 \pi \rho}
+```
+
+$$ \int_{-N}^N {e^x \, dx} $$
+
+```swift
+Integral("x", from: "-N", to: "N") { variable in
+    Power {
+        "e"
+    } with: {
+        variable
+    }
+
+}
+```
+
+$$ {R_\theta}={\begin{bmatrix}\cos\theta & -\sin\theta\\\sin\theta & \cos\theta\\\end{bmatrix}} $$
+
+```swift
+Equals {
+    Subscript {
+        "R"
+    } with: {
+        theta
+    }
+} with: {
+    LaTeXMatrix {
+        [
+            [cos(theta), -sin(theta)],
+            [sin(theta),  cos(theta)]
+        ]
+    }
+}
 ```
 
 

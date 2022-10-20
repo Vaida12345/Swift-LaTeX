@@ -86,5 +86,10 @@ func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: so
 ///
 /// - Note: For more operations, use ``LargeOperator``.
 func Integral<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
-    LargeOperator(.int, variable, from: lowerBound, to: upperBound, body: body)
+    LargeOperator(.int, lowerBound: lowerBound, upperBound: upperBound, body: {
+        LaTeXBuilder.build {
+            body(variable)
+            "\\, d\(variable.latexExpression)"
+        }
+    }())
 }

@@ -5,27 +5,18 @@ final class LaTeXTests: XCTestCase {
     func testExample() async throws {
         let formula = LaTeXBuilder.build {
             Equals {
-                Subtraction {
-                    Multiplication {
-                        nabla
-                    } by: {
-                        LaTeXT("B").font(.mathbf).overRightArrowed()
-                    }
-                } by: {
-                    Fraction(1, "C")
-                }
-                
-                Fraction {
-                    delta
-                    LaTeXT("E").font(.mathbf).overRightArrowed()
-                } denominator: {
-                    delta
-                    "t"
+                Subscript {
+                    "R"
+                } with: {
+                    theta
                 }
             } with: {
-                4
-                pi
-                rho
+                LaTeXMatrix {
+                    [
+                        [cos(theta), -sin(theta)],
+                        [sin(theta),  cos(theta)]
+                    ]
+                }
             }
         }
         
