@@ -23,11 +23,16 @@ public extension LaTeXComponent {
 public extension LaTeXComponent {
     
     func power(_ value: some LaTeXComponent) -> some LaTeXComponent {
-        self ^ value
+        Power {
+            self
+        } with: {
+            value
+        }
+
     }
     
     func transposed(_ value: some LaTeXComponent) -> some LaTeXComponent {
-        self ^ "T"
+        self.power("T")
     }
     
     func primed() -> some LaTeXComponent {
