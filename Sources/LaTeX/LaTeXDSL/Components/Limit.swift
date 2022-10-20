@@ -10,7 +10,7 @@ public struct Limit<Variable: LaTeXComponent, Bound: LaTeXComponent, Body: LaTeX
     
     private let lowerBound: Group<BinaryComponent<Variable, Arrow, Bound>>
     
-    private let body: Group<Body>
+    private let body: Body
     
     public var latexExpression: String {
         "\\lim_\(lowerBound.latexExpression) \(body.latexExpression)"
@@ -20,7 +20,7 @@ public struct Limit<Variable: LaTeXComponent, Bound: LaTeXComponent, Body: LaTeX
         self.lowerBound = Group {
             BinaryComponent(lhs: variable, operator: Arrow.to, rhs: limit)
         }
-        self.body = Group(body(variable))
+        self.body = body(variable)
     }
     
 }

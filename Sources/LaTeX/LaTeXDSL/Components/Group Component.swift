@@ -14,10 +14,21 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
     private let includeBrackets: Bool
     
     public var latexExpression: String {
-        if includeBrackets {
+        var shouldIncludeBrackets: Bool {
+            if source is Double || source is Int || source is String { return false }
+            if source is Arrow || source is BinaryRelation || source is BinaryOperator || source is Greek || source is MiscSymbols { return false }
+            
+            return true
+        }
+        
+        if includeBrackets && shouldIncludeBrackets {
             return "{\\left( \(self.source.latexExpression) \\right)}"
-        } else {
+        } else if includeBrackets {
+            return "(\(self.source.latexExpression))"
+        } else if shouldIncludeBrackets {
             return "{\(self.source.latexExpression)}"
+        } else {
+            return self.source.latexExpression
         }
     }
     

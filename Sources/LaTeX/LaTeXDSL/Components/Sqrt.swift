@@ -24,11 +24,11 @@ private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
     
     var latexExpression: String {
         if !showLine {
-            return "\\surd{\(self.source.latexExpression)}"
+            return "\\surd\(self.source.latexExpression)"
         } else if power == 2 {
-            return "\\sqrt{\(self.source.latexExpression)}"
+            return "\\sqrt\(self.source.latexExpression)"
         } else {
-            return "\\sqrt[\(power.latexExpression)]{\(self.source.latexExpression)}"
+            return "\\sqrt[\(power.latexExpression)]\(self.source.latexExpression)"
         }
     }
     
