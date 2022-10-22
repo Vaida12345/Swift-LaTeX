@@ -3,12 +3,15 @@ import XCTest
 
 final class LaTesTs: XCTestCase {
     func testExample() async throws {
-        let formula = Integral("x", from: "-N", to: "N") { variable in
-            Power {
-                log(3)
-            } with: {
-                variable
+        let formula = LaTeXBuilder.build {
+            Derivative {
+                pi
+            } against: {
+                "x"
             }
+            .compact()
+            .partial()
+
         }
         
         print(formula)
