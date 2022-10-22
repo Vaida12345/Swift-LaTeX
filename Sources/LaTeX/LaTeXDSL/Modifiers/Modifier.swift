@@ -31,6 +31,10 @@ public extension LaTeXComponent {
 
     }
     
+    func squared() -> some LaTeXComponent {
+        self.power(2)
+    }
+    
     func `subscript`(_ value: some LaTeXComponent) -> some LaTeXComponent {
         Subscript {
             self
