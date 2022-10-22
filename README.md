@@ -65,7 +65,7 @@ print(formula)
 // TupleComponents<...>(...)
 
 print(formula.latexExpression)
-// {{\nabla\times{\overrightarrow{\mathbf{B}}}}-{{\color{3a81f6} \frac{1}{C}}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}={4 \pi \rho}
+// \nabla\times\overrightarrow{\mathbf{B}}-{\color{3a81f6} \frac{1}{C}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}=4 \pi \rho
 ```
 
 $$ \int\_{-N}^N {e^x \\, \mathrm{d}x} $$
