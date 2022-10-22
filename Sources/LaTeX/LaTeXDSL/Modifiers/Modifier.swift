@@ -31,6 +31,15 @@ public extension LaTeXComponent {
 
     }
     
+    func `subscript`(_ value: some LaTeXComponent) -> some LaTeXComponent {
+        Subscript {
+            self
+        } with: {
+            value
+        }
+        
+    }
+    
     func transposed(_ value: some LaTeXComponent) -> some LaTeXComponent {
         self.power("T")
     }

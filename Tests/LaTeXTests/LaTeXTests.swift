@@ -4,14 +4,30 @@ import XCTest
 final class LaTesTs: XCTestCase {
     func testExample() async throws {
         let formula = LaTeXBuilder.build {
-            Derivative {
+            Equals {
+                Subtraction {
+                    Multiplication {
+                        nabla
+                    } by: {
+                        "B".font(.mathbf).overRightArrowed()
+                    }
+                } by: {
+                    Fraction(1, "C")
+                        .colored(.blue)
+                }
+                
+                Fraction {
+                    delta
+                    "E".font(.mathbf).overRightArrowed()
+                } denominator: {
+                    delta
+                    "t"
+                }
+            } with: {
+                4
                 pi
-            } against: {
-                "x"
+                rho
             }
-            .compact()
-            .partial()
-
         }
         
         print(formula)
