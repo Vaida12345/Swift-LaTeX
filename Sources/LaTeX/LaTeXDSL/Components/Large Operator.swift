@@ -71,21 +71,21 @@ public enum LargeOperatorOperator: String {
 /// The sum.
 ///
 /// - Note: For more operations, use ``LargeOperator``.
-func Sum<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
+public func Sum<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
     LargeOperator(.sum, variable, from: lowerBound, to: upperBound, body: body)
 }
 
 /// The prod.
 ///
 /// - Note: For more operations, use ``LargeOperator``.
-func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
+public func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
     LargeOperator(.prod, variable, from: lowerBound, to: upperBound, body: body)
 }
 
 /// The int.
 ///
 /// - Note: For more operations, use ``LargeOperator``.
-func Integral<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
+public func Integral<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
     LargeOperator(.int, lowerBound: lowerBound, upperBound: upperBound, body: {
         LaTeXBuilder.build {
             body(variable)

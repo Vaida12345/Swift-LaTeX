@@ -6,20 +6,20 @@
 //
 
 
-struct Spacer: LaTeXComponent {
+public struct Spacer: LaTeXComponent {
     
-    let latexExpression: String
+    public let latexExpression: String
     
     public init(_ expression: String) {
         self.latexExpression = expression
     }
     
-    static let quad = Spacer("\\quad")
-    static let qquad = Spacer("\\qquad")
-    static let and = Spacer("&")
-    static let comma = Spacer("\\,")
-    static let colon = Spacer("\\:")
-    static let semicolon = Spacer("\\;")
-    static let space = Spacer("\\ ")
-    static let exclamation = Spacer("\\!")
+    public static let quad = Spacer("\\quad")
+    public static let qquad = Spacer("\\qquad")
+    public static let and = Spacer("&")
+    public static let comma = Spacer("\\,")
+    public static let colon = Spacer("\\:")
+    public static let semicolon = Spacer("\\;")
+    public static let space = Spacer("\\ ")
+    public static let exclamation = Spacer("\\!")
 }

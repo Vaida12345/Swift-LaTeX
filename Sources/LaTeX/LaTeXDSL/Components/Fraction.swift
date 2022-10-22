@@ -27,3 +27,16 @@ public struct Fraction<Numerator: LaTeXComponent, Denominator: LaTeXComponent>: 
     }
     
 }
+
+
+public extension LaTeXComponent {
+    
+    func over(_ value: some LaTeXComponent) -> some LaTeXComponent {
+        Fraction(self, value)
+    }
+    
+    func over(@LaTeXBuilder _ value: () -> some LaTeXComponent) -> some LaTeXComponent {
+        Fraction(self, value())
+    }
+    
+}

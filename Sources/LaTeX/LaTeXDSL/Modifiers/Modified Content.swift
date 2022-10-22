@@ -8,9 +8,9 @@
 
 public struct LaTeXModifiedContent<Content, Modifier> {
     
-    let content: Content
+    public let content: Content
     
-    let modifier: Modifier
+    public let modifier: Modifier
     
 }
 

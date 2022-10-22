@@ -14,7 +14,7 @@ public struct PrefixModifier: LaTeXModifier {
         prefix + component.latexExpression
     }
     
-    internal init(prefix: String) {
+    fileprivate init(prefix: String) {
         self.prefix = prefix
     }
     

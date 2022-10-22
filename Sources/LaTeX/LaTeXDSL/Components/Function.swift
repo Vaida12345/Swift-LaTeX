@@ -6,7 +6,7 @@
 //
 
 
-struct Function<Source: LaTeXComponent>: LaTeXComponent {
+private struct Function<Source: LaTeXComponent>: LaTeXComponent {
     
     private let name: String
     private let index: LaTeXComponent?

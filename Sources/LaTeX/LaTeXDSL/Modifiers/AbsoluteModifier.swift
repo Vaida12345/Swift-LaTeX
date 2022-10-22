@@ -6,7 +6,7 @@
 //
 
 
-struct AbsoluteModifier: LaTeXModifier {
+private struct AbsoluteModifier: LaTeXModifier {
     
     func modify(_ component: some LaTeXComponent) -> String {
         "\\left| \(component.latexExpression) \\right|"
