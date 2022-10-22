@@ -21,6 +21,9 @@ struct ContentView: View {
     
 }
 ```
+
+<img width="1630" alt="example" src="https://user-images.githubusercontent.com/91354917/197332432-8e1ac835-0e35-41c5-a2f1-103781deb7a4.png">
+
 ---
 As a javascript package was used to render LaTeX, the Outgoing network Connections needs to be enabled in Project Sandbox.
 
