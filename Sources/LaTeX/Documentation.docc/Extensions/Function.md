@@ -34,6 +34,7 @@
 - ``exp(_:)``
 - ``ln(_:)``
 - ``log(_:)``
+- ``log(subscript:_:)``
 
 ### Miscellaneous Functions
 - ``arg(_:)``
