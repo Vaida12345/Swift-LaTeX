@@ -52,7 +52,7 @@ public let cup = LaTeXSymbol("\\cup")
 /// The `sqcup` symbol.
 ///
 /// - Experiment: Maps to `$\sqcup$` in LaTeX.
-public let sqcup = LaTeXSymbol("\\sqcup")
+public let squareCup = LaTeXSymbol("\\sqcup")
 
 /// The `vee` symbol.
 ///
@@ -117,7 +117,7 @@ public let cap = LaTeXSymbol("\\cap")
 /// The `sqcap` symbol.
 ///
 /// - Experiment: Maps to `$\sqcap$` in LaTeX.
-public let sqcap = LaTeXSymbol("\\sqcap")
+public let squareCap = LaTeXSymbol("\\sqcap")
 
 /// The `wedge` symbol.
 ///
@@ -142,7 +142,7 @@ public let oSlash = LaTeXSymbol("\\oslash")
 /// The `bigcirc` symbol.
 ///
 /// - Experiment: Maps to `$\bigcirc$` in LaTeX.
-public let bigCirc = LaTeXSymbol("\\bigcirc")
+public let bigCircle = LaTeXSymbol("\\bigcirc")
 
 /// The `bigtriangledown` symbol.
 ///
@@ -177,7 +177,7 @@ public let star = LaTeXSymbol("\\star")
 /// The `ast` symbol.
 ///
 /// - Experiment: Maps to `$\ast$` in LaTeX.
-public let ast = LaTeXSymbol("\\ast")
+public let asterisk = LaTeXSymbol("\\ast")
 
 /// The `circle` symbol.
 ///
@@ -197,7 +197,7 @@ public let diamond = LaTeXSymbol("\\diamond")
 /// The `uplus` symbol.
 ///
 /// - Experiment: Maps to `$\uplus$` in LaTeX.
-public let uplus = LaTeXSymbol("\\uplus")
+public let uPlus = LaTeXSymbol("\\uplus")
 
 /// The `amalg` symbol.
 ///

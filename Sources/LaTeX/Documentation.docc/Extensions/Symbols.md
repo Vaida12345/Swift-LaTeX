@@ -56,3 +56,51 @@
 - ``rightHarpoonUp``
 - ``rightHarpoonDown``
 - ``rightLeftHarpoons``
+
+
+
+### Basic Binary Operators
+- ``plus``
+- ``minus``
+- ``plusMinus``
+- ``minusPlus``
+- ``cDot``
+- ``divide``
+- ``times``
+
+### Set Binary Operators
+- ``setMinus``
+- ``cup``
+- ``cap``
+- ``squareCup``
+- ``squareCap``
+- ``vee``
+- ``wedge``
+
+### O Binary Operators
+- ``oPlus``
+- ``oMinus``
+- ``oDot``
+- ``oSlash``
+- ``oTimes``
+- ``bigCircle``
+
+### Triangle Binary Operators
+- ``lhd``
+- ``rhd``
+- ``unlhd``
+- ``unrhd``
+- ``triangleLeft``
+- ``triangleRight``
+
+### Symbol Binary Operators
+- ``star``
+- ``asterisk``
+- ``circle``
+- ``bullet``
+- ``diamond``
+- ``uPlus``
+- ``amalg``
+- ``dagger``
+- ``ddagger``
+- ``wr``
