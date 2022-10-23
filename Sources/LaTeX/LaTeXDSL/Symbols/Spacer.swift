@@ -10,7 +10,7 @@ public struct Spacer: LaTeXComponent {
     
     public let latexExpression: String
     
-    public init(_ expression: String) {
+    private init(_ expression: String) {
         self.latexExpression = expression
     }
     
