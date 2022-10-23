@@ -6,7 +6,10 @@
 //
 
 
-private struct Function<Source: LaTeXComponent>: LaTeXComponent {
+/// A structure corresponds to a set of functions in LaTeX.
+///
+/// - Important: Do not create instances of this structure, use pre-defined ones instead.
+public struct Function<Source: LaTeXComponent>: LaTeXComponent {
     
     private let name: String
     private let index: LaTeXComponent?
@@ -18,15 +21,15 @@ private struct Function<Source: LaTeXComponent>: LaTeXComponent {
         self.source = source
     }
     
-    init(_ name: String, index: LaTeXComponent? = nil, source: Source) {
+    fileprivate init(_ name: String, index: LaTeXComponent? = nil, source: Source) {
         self.init(name, index: index, source: Group(source))
     }
     
-    func includeBrackets(_ bool: Bool) -> Function<Source> {
+    public func includeBrackets(_ bool: Bool) -> Function<Source> {
         Function(self.name, index: self.index, source: self.source.includeBrackets(bool))
     }
     
-    var latexExpression: String {
+    public var latexExpression: String {
         if let index {
             return "\\\(name)_\(index)\(self.source.latexExpression)"
         } else {
@@ -37,6 +40,9 @@ private struct Function<Source: LaTeXComponent>: LaTeXComponent {
 }
 
 
+/// The `arccos` function.
+///
+/// - Experiment: Maps to `$arccos x$` in LaTeX.
 public func arccos(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("arccos", source: x) }
 
 public func arcsin(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("arcsin", source: x) }
@@ -80,6 +86,10 @@ public func tanh(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("ta
 public func ker(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("ker", source: x) }
 
 public func lg(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("lg", source: x) }
+
+public func liminf(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("liminf", source: x) }
+
+public func limsup(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("limsup", source: x) }
 
 public func log(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("log", source: x) }
 
