@@ -120,7 +120,7 @@
 
 ### Other Equatable Binary Relation
 - ``equal``
-- ``equalV``
+- ``equiv``
 - ``dotEqual``
 - ``sim``
 - ``simEqual``
