@@ -8,8 +8,6 @@
 
 ## Topics
 
-### Arrows
-
 ### Basic Arrows
 - ``rightArrow``
 - ``leftArrow``
@@ -104,3 +102,57 @@
 - ``dagger``
 - ``ddagger``
 - ``wr``
+
+
+### Basic Comparison Binary Relation
+- ``less``
+- ``greater``
+- ``lessEqual``
+- ``greaterEqual``
+- ``lessLess``
+- ``greaterGreater``
+
+### Other Comparison Binary Relation
+- ``prec``
+- ``precEqual``
+- ``succ``
+- ``succEqual``
+
+### Other Equatable Binary Relation
+- ``equal``
+- ``equalV``
+- ``dotEqual``
+- ``sim``
+- ``simEqual``
+- ``approx``
+- ``cong``
+- ``notEqual``
+
+### Set Binary Relation
+- ``in``
+- ``owns``
+- ``notIn``
+- ``subset``
+- ``subsetEqual``
+- ``supSet``
+- ``supSetEqual``
+- ``squareSupSet``
+- ``squareSupSet``
+- ``squareSupSetEqual``
+- ``squareSupSetEqual``
+- ``Join``
+- ``bowtie``
+
+### Miscellaneous Binary Relation
+- ``propTo``
+- ``vDash``
+- ``dashV``
+- ``models``
+- ``mid``
+- ``parallel``
+- ``perp``
+- ``smile``
+- ``frown``
+- ``asymp``
+- ``colon``
+

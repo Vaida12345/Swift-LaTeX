@@ -9,6 +9,8 @@
 /// The built-in LaTeX symbols.
 ///
 /// - Important: Do not create instances of this structure, use pre-defined ones instead.
+///
+/// - Note: To use the not operator, see ``not``
 public struct LaTeXSymbol: LaTeXComponent, CustomStringConvertible {
     
     public let latexExpression: String

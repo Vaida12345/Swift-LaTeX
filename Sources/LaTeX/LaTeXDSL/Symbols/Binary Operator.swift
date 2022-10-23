@@ -24,14 +24,14 @@ public let mp = LaTeXSymbol("\\mp")
 @available(*, unavailable, renamed: "divide")
 public let div = LaTeXSymbol("\\div")
 
-/// The `plus` symbol.
+/// The `+` symbol.
 ///
-/// - Experiment: Maps to `$\plus$` in LaTeX.
+/// - Experiment: Maps to `$+$` in LaTeX.
 public let plus = LaTeXSymbol("+")
 
-/// The `plusminus` symbol.
+/// The `pm` symbol.
 ///
-/// - Experiment: Maps to `$\plusminus$` in LaTeX.
+/// - Experiment: Maps to `$\pm$` in LaTeX.
 public let plusMinus = LaTeXSymbol("\\pm")
 
 /// The `cdot` symbol.
@@ -89,19 +89,19 @@ public let lhd = LaTeXSymbol("\\lhd")
 /// - Experiment: Maps to `$\unlhd$` in LaTeX.
 public let unlhd = LaTeXSymbol("\\unlhd")
 
-/// The `minus` symbol.
+/// The `-` symbol.
 ///
-/// - Experiment: Maps to `$\minus$` in LaTeX.
+/// - Experiment: Maps to `$-$` in LaTeX.
 public let minus = LaTeXSymbol("-")
 
-/// The `minusplus` symbol.
+/// The `mp` symbol.
 ///
-/// - Experiment: Maps to `$\minusplus$` in LaTeX.
+/// - Experiment: Maps to `$\mp$` in LaTeX.
 public let minusPlus = LaTeXSymbol("\\mp")
 
-/// The `divide` symbol.
+/// The `div` symbol.
 ///
-/// - Experiment: Maps to `$\divide$` in LaTeX.
+/// - Experiment: Maps to `$\div$` in LaTeX.
 public let divide = LaTeXSymbol("\\div")
 
 /// The `setminus` symbol.
@@ -219,4 +219,23 @@ public let ddagger = LaTeXSymbol("\\ddagger")
 /// - Experiment: Maps to `$\wr$` in LaTeX.
 public let wr = LaTeXSymbol("\\wr")
 
+
+//import Foundation
+//
+//let text = """
+///// The `#_#` symbol.
+/////
+///// - Experiment: Maps to `$\\#_#$` in LaTeX.
+//public let ## = LaTeXSymbol("\\\\#_#")\n
+//"""
+//
+//let symbols = ["plus", "plusMinus", "cDot", "times", "cup", "sqcup", "vee", "oPlus", "oDot", "oTimes", "bigTriangleUp", "lhd", "unlhd", "minus", "minusPlus", "divide", "setMinus", "cap", "sqcap", "wedge", "land", "oMinus", "oSlash", "bigCirc", "bigTriangleDown", "rhd", "unrhd", "triangleLeft", "triangleRight", "star", "ast", "circle", "bullet", "diamond", "uplus", "amalg", "dagger", "ddagger", "wr"]
+//
+//for symbol in symbols {
+//    print(
+//        text
+//            .replacingOccurrences(of: "#_#", with: symbol.lowercased())
+//            .replacingOccurrences(of: "##", with: symbol)
+//    )
+//}
 
