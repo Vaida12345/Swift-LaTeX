@@ -62,7 +62,7 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
         self.init(source(), includeBrackets: includeBrackets)
     }
     
-    func includeBrackets(_ bool: Bool) -> Group<Source> {
+    public func includeBrackets(_ bool: Bool) -> Group<Source> {
         Group(self.source, includeBrackets: bool)
     }
     
