@@ -17,8 +17,6 @@ public struct LaTeXView: View {
     @State private var width: CGFloat?
     @State private var height: CGFloat?
     
-    let alignment: Alignment
-    
     private let formula: String
     
     public var body: some View {
@@ -27,17 +25,12 @@ public struct LaTeXView: View {
             .disabled(true)
     }
     
-    private init(formula: String, alignment: Alignment = .center) {
-        self.formula = formula
-        self.alignment = alignment
-    }
-    
     /// Initialize a new LaTeX View.
     ///
     /// - parameters:
     ///   - formula: The formula in LaTeX to be displayed.
     public init(formula: String) {
-        self.init(formula: formula, alignment: .center)
+        self.formula = formula
     }
     
     public init(formula: some LaTeXComponent) {
