@@ -25,7 +25,7 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
         if includeBrackets && shouldIncludeBrackets {
             return "{\\left( \(self.source.latexExpression) \\right)}"
         } else if includeBrackets {
-            return "(\(self.source.latexExpression))"
+            return "\\left( \(self.source.latexExpression) \\right)"
         } else if shouldIncludeBrackets {
             return "{\(self.source.latexExpression)}"
         } else {
