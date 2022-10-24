@@ -18,6 +18,12 @@ public struct MathAccentModifier: LaTeXModifier {
         self.symbolName = symbolName
     }
     
+    public func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        guard let component = component.evaluated().numericValue else { return .symbolic(component.modifier(self)) }
+        
+        return .numeric(component)
+    }
+    
     
     public static let hat = MathAccentModifier("hat")
     public static let grave = MathAccentModifier("grave")

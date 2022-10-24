@@ -16,6 +16,10 @@ public struct Limit<Variable: LaTeXComponent, Bound: LaTeXComponent, Body: LaTeX
         "\\lim_\(lowerBound.latexExpression) \(body.latexExpression)"
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        .symbolic(self)
+    }
+    
     public init(_ variable: Variable, to limit: Bound, body: (_ variable: Variable) -> Body) {
         self.lowerBound = Group {
             BinaryComponent(lhs: variable, operator: rightArrow, rhs: limit)

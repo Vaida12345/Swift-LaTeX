@@ -15,6 +15,11 @@ public struct LaTeXArgumentMatrix: LaTeXComponent {
         "\\left[" + contents.latexExpression + "\\left| \\," + rhs.latexExpression + "\\right. \\right]"
     }
     
+    /// The evaluated result is the same as ``latexExpression``.
+    public func evaluated() -> EvaluatedResult<Self> {
+        .symbolic(self)
+    }
+    
     public init( contents: () -> [[any LaTeXComponent]], rhs: () -> [any LaTeXComponent]) {
         self.contents = LaTeXMatrix(isBounded: false, contents: contents)
         self.rhs = LaTeXMatrix(isBounded: false, contents: { rhs().map { [$0] } })

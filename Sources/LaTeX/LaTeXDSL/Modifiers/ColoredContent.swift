@@ -18,6 +18,10 @@ private struct ColoredContent<Content: LaTeXComponent>: LaTeXComponent {
         "\\color{\(self.color)} \(content.latexExpression)"
     }
     
+    func evaluated() -> EvaluatedResult<Content.EvaluatedResultType> {
+        self.content.evaluated()
+    }
+    
     init(color: Color, content: Content) {
         self.color = color.hexDescription
         self.content = content

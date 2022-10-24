@@ -16,6 +16,10 @@ private struct BracedModifier<T: LaTeXComponent>: LaTeXModifier {
         "\\\(self.position.rawValue){\(component.latexExpression)}\(position == .overBrace ? "^" : "_")\(value.latexExpression)"
     }
     
+    func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        .symbolic(component.modifier(self))
+    }
+    
     init(position: Position, value: T) {
         self.position = position
         self.value = Group(value)

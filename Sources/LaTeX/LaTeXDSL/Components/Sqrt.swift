@@ -6,19 +6,22 @@
 //
 
 
+import Foundation
+
+
 private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
     
     private let showLine: Bool
-    private let power: Int
+    private let power: Double
     private let source: Group<Source>
     
-    private init(power: Int, showLine: Bool, _ source: Group<Source>) {
+    private init(power: Double, showLine: Bool, _ source: Group<Source>) {
         self.power = power
         self.showLine = showLine
         self.source = source
     }
     
-    internal init(power: Int, _ source: Source) {
+    internal init(power: Double, _ source: Source) {
         self.init(power: power, showLine: true, Group(source))
     }
     
@@ -32,6 +35,16 @@ private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
         }
     }
     
+    func evaluated() -> EvaluatedResult<Self> {
+        guard let source = self.source.evaluated().numericValue else { return .symbolic(self) }
+        
+        if power == 2 {
+            return .numeric(Darwin.sqrt(source))
+        } else {
+            return .numeric(pow(source, 1 / power))
+        }
+    }
+    
     func showLine(_ bool: Bool) -> Sqrt<Source> {
         Sqrt(power: self.power, showLine: bool, self.source)
     }
@@ -39,13 +52,13 @@ private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
 }
 
 
-public func sqrt(_ x: some LaTeXComponent, power: Int = 2) -> some LaTeXComponent {
+public func sqrt(_ x: some LaTeXComponent, power: Double = 2) -> some LaTeXComponent {
     Sqrt(power: power, x)
 }
 
 public extension LaTeXComponent {
     
-    func sqrt(power: Int = 2) -> some LaTeXComponent {
+    func sqrt(power: Double = 2) -> some LaTeXComponent {
         Sqrt(power: power, self)
     }
     

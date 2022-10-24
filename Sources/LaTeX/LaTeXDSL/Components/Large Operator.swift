@@ -20,6 +20,10 @@ public struct LargeOperator<LowerBound: LaTeXComponent, UpperBound: LaTeXCompone
         "\\\(self.operator.rawValue)_\(self.lowerBound?.latexExpression ?? "")^\(self.upperBound?.latexExpression ?? "") \(self.body.latexExpression)"
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        .symbolic(self)
+    }
+    
     public init(_ operator: LargeOperatorOperator, lowerBound: LowerBound, upperBound: UpperBound, body: Body) {
         self.operator = `operator`
         self.lowerBound = Group(lowerBound)
@@ -47,6 +51,55 @@ public struct LargeOperator<LowerBound: LaTeXComponent, UpperBound: LaTeXCompone
     
 }
 
+
+private struct RangedLargeOperator<Variable: LaTeXComponent, LowerBound: LaTeXComponent, UpperBound: LaTeXComponent, Body: LaTeXComponent>: LaTeXComponent {
+    
+    private let `operator`: LargeOperatorOperator
+    
+    private let variable: Variable
+    
+    private let lowerBound: LowerBound
+    
+    private let upperBound: Group<UpperBound>
+    
+    private let body: (_ variable: any LaTeXComponent) -> Body
+    
+    var latexExpression: String {
+        "\\\(self.operator.rawValue)_{\(self.variable.latexExpression) = \(self.lowerBound.latexExpression)}^\(self.upperBound.latexExpression) \(Group(self.body(self.variable)).latexExpression)"
+    }
+    
+    func evaluated() -> EvaluatedResult<Self> {
+        guard let lowerBound = self.lowerBound.evaluated().numericValue,
+              let upperBound = self.upperBound.evaluated().numericValue else { return .symbolic(self) }
+        
+        var cumulative: Double = self.operator == .sum ? 0 : 1
+        
+        for i in Int(lowerBound)...Int(upperBound) {
+            guard let partialValue = body(i).evaluated().numericValue else { return .symbolic(self) }
+            
+            if self.operator == .sum {
+                cumulative += partialValue
+            } else {
+                cumulative *= partialValue
+            }
+        }
+        
+        return .numeric(cumulative)
+    }
+    
+    init(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: LowerBound, to upperBound: UpperBound, @LaTeXBuilder body: @escaping (_ variable: any LaTeXComponent) -> Body) {
+        precondition(`operator` == .sum || `operator` == .prod)
+        
+        self.operator = `operator`
+        self.variable = variable
+        self.lowerBound = lowerBound
+        self.upperBound = Group(upperBound)
+        self.body = body
+    }
+    
+}
+
+
 public enum LargeOperatorOperator: String {
     case sum
     case prod
@@ -71,15 +124,15 @@ public enum LargeOperatorOperator: String {
 /// The sum.
 ///
 /// - Note: For more operations, use ``LargeOperator``.
-public func Sum<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
-    LargeOperator(.sum, variable, from: lowerBound, to: upperBound, body: body)
+public func Sum<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: @escaping (_ variable: any LaTeXComponent) -> some LaTeXComponent) -> some LaTeXComponent {
+    RangedLargeOperator(.sum, variable, from: lowerBound, to: upperBound, body: body)
 }
 
 /// The prod.
 ///
 /// - Note: For more operations, use ``LargeOperator``.
-public func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: (_ variable: Variable) -> some LaTeXComponent) -> some LaTeXComponent {
-    LargeOperator(.prod, variable, from: lowerBound, to: upperBound, body: body)
+public func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: @escaping (_ variable: any LaTeXComponent) -> some LaTeXComponent) -> some LaTeXComponent {
+    RangedLargeOperator(.prod, variable, from: lowerBound, to: upperBound, body: body)
 }
 
 /// The int.

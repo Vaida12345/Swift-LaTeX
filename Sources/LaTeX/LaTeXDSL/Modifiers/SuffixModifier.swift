@@ -14,6 +14,16 @@ private struct SuffixModifier: LaTeXModifier {
         component.latexExpression + suffix
     }
     
+    func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        guard let value = component.evaluated().numericValue else { return .symbolic(component.modifier(self)) }
+        
+        if suffix == "!", let factorial = Int(value).factorial() {
+            return .numeric(Double(factorial))
+        } else {
+            return .symbolic(component.modifier(self))
+        }
+    }
+    
     internal init(suffix: String) {
         self.suffix = suffix
     }

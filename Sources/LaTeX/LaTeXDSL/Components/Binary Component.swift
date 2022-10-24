@@ -6,6 +6,9 @@
 //
 
 
+import Foundation
+
+
 public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS: LaTeXComponent>: LaTeXComponent {
     
     private let lhs: LHS
@@ -22,6 +25,26 @@ public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS
     
     public var latexExpression: String {
         lhs.latexExpression + self.operator.latexExpression + rhs.latexExpression
+    }
+    
+    public func evaluated() -> EvaluatedResult<Self> {
+        guard let lhs = lhs.evaluated().numericValue,
+              let rhs = rhs.evaluated().numericValue else { return .symbolic(self) }
+        
+        switch self.operator.latexExpression {
+        case "+":
+            return .numeric(lhs + rhs)
+        case "-":
+            return .numeric(lhs - rhs)
+        case "*", "\\times", "\\cdot":
+            return .numeric(lhs * rhs)
+        case "/", "\\div":
+            return .numeric(lhs / rhs)
+        case "^":
+            return .numeric(pow(lhs, rhs))
+        default:
+            return .symbolic(self)
+        }
     }
     
     public func not() -> some LaTeXComponent {

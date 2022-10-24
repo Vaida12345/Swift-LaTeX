@@ -16,6 +16,13 @@ public struct Fraction<Numerator: LaTeXComponent, Denominator: LaTeXComponent>: 
         "\\frac{\(self.numerator.latexExpression)}{\(self.denominator.latexExpression)}"
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        guard let numerator = numerator.evaluated().numericValue,
+              let denominator = denominator.evaluated().numericValue else { return .symbolic(self) }
+        
+        return .numeric(numerator / denominator)
+    }
+    
     public init(_ numerator: Numerator, _ denominator: Denominator) {
         self.numerator = numerator
         self.denominator = denominator

@@ -6,22 +6,25 @@
 //
 
 
+import Foundation
+
+
 /// A structure corresponds to a set of functions in LaTeX.
 ///
 /// - Important: Do not create instances of this structure, use pre-defined ones instead.
 public struct Function<Source: LaTeXComponent>: LaTeXComponent {
     
     private let name: String
-    private let index: LaTeXComponent?
+    private let index: (any LaTeXComponent)?
     private let source: Group<Source>
     
-    private init(_ name: String, index: LaTeXComponent? = nil, source: Group<Source>) {
+    private init(_ name: String, index: (any LaTeXComponent)? = nil, source: Group<Source>) {
         self.name = name
         self.index = index
         self.source = source
     }
     
-    fileprivate init(_ name: String, index: LaTeXComponent? = nil, source: Source) {
+    fileprivate init(_ name: String, index: (any LaTeXComponent)? = nil, source: Source) {
         self.init(name, index: index, source: Group(source))
     }
     
@@ -39,15 +42,62 @@ public struct Function<Source: LaTeXComponent>: LaTeXComponent {
     ///
     /// - Parameters:
     ///   - shouldInclude: A bool determining whether a round brackets `()` should be included.
-    public func includeBrackets(_ shouldInclude: Bool) -> Function<Source> {
+    public func includeBrackets(_ shouldInclude: Bool) -> Function {
         Function(self.name, index: self.index, source: self.source.includeBrackets(shouldInclude))
     }
     
     public var latexExpression: String {
         if let index {
-            return "\\\(name)_\(index)\(self.source.latexExpression)"
+            return "\\\(name)_\(index.latexExpression)\(self.source.latexExpression)"
         } else {
             return "\\\(name)\(self.source.latexExpression)"
+        }
+    }
+    
+    public func evaluated() -> EvaluatedResult<Self> {
+        guard let source = self.source.evaluated().numericValue else { return .symbolic(self) }
+        
+        if name == "log", let index = index?.latexExpression, let value = Double(index) {
+            return .numeric(log(source) / log(value))
+        } else if name == "log" && index == nil {
+            return .numeric(log(source))
+        } else if name == "log" {
+            return .symbolic(self)
+        }
+        
+        switch name {
+        case "arccos":
+            return .numeric(acos(source))
+        case "arcsin":
+            return .numeric(asin(source))
+        case "arctan":
+            return .numeric(atan(source))
+        case "sinh":
+            return .numeric(sinh(source))
+        case "cos":
+            return .numeric(cos(source))
+        case "cosh":
+            return .numeric(cosh(source))
+        case "cot":
+            return .numeric(1 / tan(source))
+        case "coth":
+            return .numeric(cosh(source) / sinh(source))
+        case "csc":
+            return .numeric(1 / sin(source))
+        case "tan":
+            return .numeric(tan(source))
+        case "exp":
+            return .numeric(exp(source))
+        case "tanh":
+            return .numeric(tanh(source))
+        case "lg":
+            return .numeric(log10(source))
+        case "ln":
+            return .numeric(log(source))
+        case "sin":
+            return .numeric(sin(source))
+        default:
+            return .symbolic(self)
         }
     }
     

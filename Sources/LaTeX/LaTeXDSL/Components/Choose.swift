@@ -16,9 +16,42 @@ public struct Choose<Upper: LaTeXComponent, Lower: LaTeXComponent>: LaTeXCompone
         "{\(upper) \\choose \(lower)}"
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        guard let uppeR = upper.evaluated().numericValue,
+              let loweR = lower.evaluated().numericValue else { return .symbolic(self) }
+        
+        let upper = Int(uppeR)
+        let lower = Int(loweR)
+        
+        guard let numerator = upper.factorial(),
+              let denominatorLeft = lower.factorial(),
+              let denominatorRight = (upper - lower).factorial() else { return .symbolic(self) }
+        
+        return .numeric(Double(numerator / denominatorLeft / denominatorRight))
+    }
+    
     public init(@LaTeXBuilder _ upper: () -> Upper, @LaTeXBuilder choose lower: () -> Lower) {
         self.upper = upper()
         self.lower = lower()
+    }
+    
+}
+
+
+internal extension Int {
+    
+    func factorial() -> Int? {
+        var cumulative = 1
+        
+        for i in 1...self {
+            if cumulative.multipliedReportingOverflow(by: i).overflow {
+                return nil
+            } else {
+                cumulative *= i
+            }
+        }
+        
+        return cumulative
     }
     
 }

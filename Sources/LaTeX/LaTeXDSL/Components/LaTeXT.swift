@@ -49,6 +49,10 @@ public struct LaTeXT: LaTeXComponent {
         }
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        .symbolic(self)
+    }
+    
     private init(_ value: String, font: Font?) {
         self.value = value
         self.font = font

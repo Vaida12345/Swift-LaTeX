@@ -10,6 +10,8 @@ public protocol LaTeXModifier {
     
     func modify(_ component: some LaTeXComponent) -> String
     
+    func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>>
+    
 }
 
 public extension LaTeXComponent {

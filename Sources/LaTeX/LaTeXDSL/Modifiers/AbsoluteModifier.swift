@@ -12,6 +12,12 @@ private struct AbsoluteModifier: LaTeXModifier {
         "\\left| \(component.latexExpression) \\right|"
     }
     
+    func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        guard let component = component.evaluated().numericValue else { return .symbolic(component.modifier(self)) }
+        
+        return .numeric(abs(component))
+    }
+    
 }
 
 

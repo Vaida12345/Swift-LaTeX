@@ -14,6 +14,12 @@ private struct InternalModifier: LaTeXModifier {
         "\\\(name) \(component.latexExpression)"
     }
     
+    func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        guard let component = component.evaluated().numericValue else { return .symbolic(component.modifier(self)) }
+        
+        return .numeric(component)
+    }
+    
     init(name: String) {
         self.name = name
     }

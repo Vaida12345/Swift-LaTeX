@@ -14,12 +14,20 @@ public struct Cases: LaTeXComponent {
         "\\begin{cases}\(content.map(\.latexExpression).joined(separator: " \\\\ "))\\end{cases}"
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        return .symbolic(self)
+    }
+    
     public struct Body: LaTeXComponent {
         
         var contents: [any LaTeXComponent]
         
         public var latexExpression: String {
             contents.map(\.latexExpression).joined(separator: " ")
+        }
+        
+        public func evaluated() -> EvaluatedResult<Self> {
+            .symbolic(self)
         }
         
         public init(@LaTeXBuilder contents: () -> some LaTeXComponent) {

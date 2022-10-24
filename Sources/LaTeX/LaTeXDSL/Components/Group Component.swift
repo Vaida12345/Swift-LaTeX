@@ -33,6 +33,10 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
         }
     }
     
+    public func evaluated() -> EvaluatedResult<Source.EvaluatedResultType> {
+        self.source.evaluated()
+    }
+    
     /// Create a new group.
     ///
     /// - Parameters:

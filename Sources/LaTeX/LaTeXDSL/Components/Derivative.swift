@@ -25,6 +25,10 @@ public struct Derivative<Base: LaTeXComponent, Content: LaTeXComponent>: LaTeXCo
         }
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        .symbolic(self)
+    }
+    
     private init(_ content: Content, against base: Base, isCompact: Bool, isPartial: Bool) {
         self.content = content
         self.base = base

@@ -20,4 +20,8 @@ extension LaTeXModifiedContent: LaTeXComponent where Content: LaTeXComponent, Mo
         self.modifier.modify(self.content)
     }
     
+    public func evaluated() -> EvaluatedResult<LaTeXModifiedContent<Content, Modifier>> {
+        self.modifier.evaluated(self.content)
+    }
+    
 }

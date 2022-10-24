@@ -12,12 +12,21 @@ public protocol LaTeXComponent {
     /// The expression in LaTeX.
     var latexExpression: String { get }
     
+    associatedtype EvaluatedResultType: LaTeXComponent
+    
+    /// Evaluate the current expression.
+    func evaluated() -> EvaluatedResult<EvaluatedResultType>
+    
 }
  
 extension String: LaTeXComponent {
     
     public var latexExpression: String {
         self
+    }
+    
+    public func evaluated() -> EvaluatedResult<String> {
+        .symbolic(self)
     }
     
 }
@@ -28,6 +37,10 @@ extension Double: LaTeXComponent {
         self.description
     }
     
+    public func evaluated() -> EvaluatedResult<Never> {
+        .numeric(self)
+    }
+    
 }
 
 extension Int: LaTeXComponent {
@@ -36,10 +49,20 @@ extension Int: LaTeXComponent {
         self.description
     }
     
+    public func evaluated() -> EvaluatedResult<Never> {
+        .numeric(Double(self))
+    }
+    
 }
 
 extension Never: LaTeXComponent {
     
-    public var latexExpression: String { "" }
+    public var latexExpression: String {
+        fatalError()
+    }
+    
+    public func evaluated() -> EvaluatedResult<String> {
+        fatalError()
+    }
     
 }

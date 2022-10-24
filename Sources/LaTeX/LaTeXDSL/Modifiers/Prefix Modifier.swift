@@ -14,6 +14,16 @@ public struct PrefixModifier: LaTeXModifier {
         prefix + component.latexExpression
     }
     
+    public func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        guard let value = component.evaluated().numericValue else { return .symbolic(component.modifier(self)) }
+        
+        if prefix == "-" {
+            return .numeric(-1 * value)
+        } else {
+            return .symbolic(component.modifier(self))
+        }
+    }
+    
     fileprivate init(prefix: String) {
         self.prefix = prefix
     }

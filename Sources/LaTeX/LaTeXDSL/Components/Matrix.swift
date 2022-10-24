@@ -23,6 +23,10 @@ public struct LaTeXMatrix: LaTeXComponent {
         return result + "\\end{\(matrixName)}"
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        .symbolic(self)
+    }
+    
     public init(isBounded: Bool = true, contents: () -> [[any LaTeXComponent]]) {
         self.isBounded = isBounded
         self.contents = contents()

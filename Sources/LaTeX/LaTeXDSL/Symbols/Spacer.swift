@@ -14,6 +14,10 @@ public struct Spacer: LaTeXComponent {
         self.latexExpression = expression
     }
     
+    public func evaluated() -> EvaluatedResult<Self> {
+        .null
+    }
+    
     public static let quad = Spacer("\\quad")
     public static let qquad = Spacer("\\qquad")
     public static let and = Spacer("&")

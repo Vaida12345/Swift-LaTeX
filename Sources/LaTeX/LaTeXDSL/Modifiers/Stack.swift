@@ -13,6 +13,10 @@ private struct Stackrel<Content: LaTeXComponent>: LaTeXModifier {
         "\\stackrel{\(self.content.latexExpression)}{\(component.latexExpression)}"
     }
     
+    public func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        .symbolic(component.modifier(self))
+    }
+    
     init(_ content: Content) {
         self.content = content
     }
@@ -37,6 +41,10 @@ private struct Stackbin<Content: LaTeXComponent>: LaTeXModifier {
     
     func modify(_ component: some LaTeXComponent) -> String {
         "\\stackbin{\(self.content.latexExpression)}{\(component.latexExpression)}"
+    }
+    
+    public func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        .symbolic(component.modifier(self))
     }
     
     init(_ content: Content) {

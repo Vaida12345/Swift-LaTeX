@@ -14,6 +14,10 @@ private struct ContainedModifier: LaTeXModifier {
         "\\\(name){\(component.latexExpression)}"
     }
     
+    func evaluated<Content: LaTeXComponent>(_ component: Content) -> EvaluatedResult<LaTeXModifiedContent<Content, Self>> {
+        .symbolic(component.modifier(self))
+    }
+    
     init(name: String) {
         self.name = name
     }

@@ -20,6 +20,10 @@ public struct LaTeXSymbol: LaTeXComponent, CustomStringConvertible {
         self.latexExpression
     }
     
+    public func evaluated() -> EvaluatedResult<String> {
+        .symbolic(self.latexExpression)
+    }
+    
     internal init(_ latexExpression: String) {
         self.latexExpression = latexExpression
     }
