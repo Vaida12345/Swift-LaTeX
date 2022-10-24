@@ -45,8 +45,8 @@ internal struct LaTeXRenderer: NSViewRepresentable {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
             Task {
-                let width = try! await view.evaluateJavaScript("document.getElementById('LaTeXView').clientWidth") as! Int
-                let height = try! await view.evaluateJavaScript("document.getElementById('LaTeXView').clientHeight") as! Int
+                guard let width = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientWidth") as? Int else { return }
+                guard let height = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientHeight") as? Int else { return }
                 
                 self.width = CGFloat(width)
                 self.height = CGFloat(height)
