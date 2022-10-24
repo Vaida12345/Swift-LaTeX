@@ -160,6 +160,10 @@ public struct LaTeXBuilder {
         }
     }
     
+    public static func buildArray(_ components: [Component]) -> Component {
+        components.map { "{" + $0.latexExpression + "}" }.joined(separator: " ")
+    }
+    
     public static func build(@LaTeXBuilder _ body: () -> some LaTeXComponent) -> some LaTeXComponent {
         body()
     }
