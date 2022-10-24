@@ -42,3 +42,11 @@ private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
 public func sqrt(_ x: some LaTeXComponent, power: Int = 2) -> some LaTeXComponent {
     Sqrt(power: power, x)
 }
+
+public extension LaTeXComponent {
+    
+    func sqrt(power: Int = 2) -> some LaTeXComponent {
+        Sqrt(power: power, self)
+    }
+    
+}
