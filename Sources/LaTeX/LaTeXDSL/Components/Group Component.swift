@@ -11,10 +11,14 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
     
     internal let source: Source
     
-    private let includeBrackets: Bool
+    private let includeRoundBrackets: Bool
+    
+    private let shouldIncludeCurlyBrackets: Bool?
     
     public var latexExpression: String {
         var shouldIncludeBrackets: Bool {
+            if let shouldIncludeCurlyBrackets { return shouldIncludeCurlyBrackets }
+            
             if source is Double || source is Int { return false }
             if let value = source as? String { if value.count == 1 { return false } }
             if source is LaTeXSymbol { return false }
@@ -22,9 +26,9 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
             return true
         }
         
-        if includeBrackets && shouldIncludeBrackets {
+        if includeRoundBrackets && shouldIncludeBrackets {
             return "{\\left( \(self.source.latexExpression) \\right)}"
-        } else if includeBrackets {
+        } else if includeRoundBrackets {
             return "\\left( \(self.source.latexExpression) \\right)"
         } else if shouldIncludeBrackets {
             return "{\(self.source.latexExpression)}"
@@ -37,23 +41,28 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
         self.source.evaluated()
     }
     
-    /// Create a new group.
-    ///
-    /// - Parameters:
-    ///   - source: The content contained.
-    ///   - includeBrackets: A bool determining whether it should be contained in round brackets.
-    public init(_ source: Source, includeBrackets: Bool = false) {
+    internal init(_ source: Source, includeRoundBrackets: Bool = false, shouldIncludeCurlyBrackets: Bool? = nil) {
         self.source = source
-        self.includeBrackets = includeBrackets
+        self.includeRoundBrackets = includeRoundBrackets
+        self.shouldIncludeCurlyBrackets = shouldIncludeCurlyBrackets
     }
     
     /// Create a new group.
     ///
     /// - Parameters:
     ///   - source: The content contained.
-    ///   - includeBrackets: A bool determining whether it should be contained in round brackets.
-    public init(_ source: Group<Source>, includeBrackets: Bool = false) {
-        self.init(source.source, includeBrackets: includeBrackets)
+    ///   - includeRoundBrackets: A bool determining whether it should be contained in round brackets.
+    public init(_ source: Source, includeRoundBrackets: Bool = false) {
+        self.init(source, includeRoundBrackets: includeRoundBrackets, shouldIncludeCurlyBrackets: nil)
+    }
+    
+    /// Create a new group.
+    ///
+    /// - Parameters:
+    ///   - source: The content contained.
+    ///   - includeRoundBrackets: A bool determining whether it should be contained in round brackets.
+    public init(_ source: Group<Source>, includeRoundBrackets: Bool = false) {
+        self.init(source.source, includeRoundBrackets: includeRoundBrackets)
     }
     
     
@@ -61,13 +70,13 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
     ///
     /// - Parameters:
     ///   - source: The content contained.
-    ///   - includeBrackets: A bool determining whether it should be contained in round brackets.
-    public init(includeBrackets: Bool = false, @LaTeXBuilder _ source: () -> Source) {
-        self.init(source(), includeBrackets: includeBrackets)
+    ///   - includeRoundBrackets: A bool determining whether it should be contained in round brackets.
+    public init(includeRoundBrackets: Bool = false, @LaTeXBuilder _ source: () -> Source) {
+        self.init(source(), includeRoundBrackets: includeRoundBrackets)
     }
     
-    public func includeBrackets(_ bool: Bool) -> Group<Source> {
-        Group(self.source, includeBrackets: bool)
+    public func includeRoundBrackets(_ bool: Bool) -> Group<Source> {
+        Group(self.source, includeRoundBrackets: bool)
     }
     
 }

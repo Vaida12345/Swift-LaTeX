@@ -83,9 +83,9 @@ public func Equals(@LaTeXBuilder lhs: () -> some LaTeXComponent, @LaTeXBuilder w
 }
 
 public func Power(@LaTeXBuilder lhs: () -> some LaTeXComponent, @LaTeXBuilder with rhs: () -> some LaTeXComponent) -> some LaTeXComponent {
-    BinaryComponent(lhs: Group(lhs()), operator: "^", rhs: Group(rhs()))
+    BinaryComponent(lhs: Group(lhs(), shouldIncludeCurlyBrackets: true), operator: "^", rhs: Group(rhs(), shouldIncludeCurlyBrackets: true))
 }
 
 public func Subscript(@LaTeXBuilder lhs: () -> some LaTeXComponent, @LaTeXBuilder with rhs: () -> some LaTeXComponent) -> some LaTeXComponent {
-    BinaryComponent(lhs: Group(lhs()), operator: "_", rhs: Group(rhs()))
+    BinaryComponent(lhs: Group(lhs(), shouldIncludeCurlyBrackets: true), operator: "_", rhs: Group(rhs(), shouldIncludeCurlyBrackets: true))
 }

@@ -38,11 +38,11 @@ private struct ColoredContent<Content: LaTeXComponent>: LaTeXComponent {
 public extension LaTeXComponent {
     
     func colored(_ color: Color) -> some LaTeXComponent {
-        Group(ColoredContent(color: color, content: self))
+        Group(ColoredContent(color: color, content: self), shouldIncludeCurlyBrackets: true)
     }
     
     func colored(name: String) -> some LaTeXComponent {
-        Group(ColoredContent(name: name, content: self))
+        Group(ColoredContent(name: name, content: self), shouldIncludeCurlyBrackets: true)
     }
     
 }

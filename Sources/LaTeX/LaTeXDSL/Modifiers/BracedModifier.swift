@@ -22,7 +22,7 @@ private struct BracedModifier<T: LaTeXComponent>: LaTeXModifier {
     
     init(position: Position, value: T) {
         self.position = position
-        self.value = Group(value)
+        self.value = Group(value, shouldIncludeCurlyBrackets: true)
     }
     
     enum Position: String {

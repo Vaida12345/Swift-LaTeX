@@ -25,7 +25,7 @@ public struct Function<Source: LaTeXComponent>: LaTeXComponent {
     }
     
     fileprivate init(_ name: String, index: (any LaTeXComponent)? = nil, source: Source) {
-        self.init(name, index: index, source: Group(source))
+        self.init(name, index: index, source: Group(source, shouldIncludeCurlyBrackets: true))
     }
     
     /// Wrap the function body with round brackets `()` if `shouldInclude`.
@@ -42,8 +42,8 @@ public struct Function<Source: LaTeXComponent>: LaTeXComponent {
     ///
     /// - Parameters:
     ///   - shouldInclude: A bool determining whether a round brackets `()` should be included.
-    public func includeBrackets(_ shouldInclude: Bool) -> Function {
-        Function(self.name, index: self.index, source: self.source.includeBrackets(shouldInclude))
+    public func includeRoundBrackets(_ shouldInclude: Bool) -> Function {
+        Function(self.name, index: self.index, source: self.source.includeRoundBrackets(shouldInclude))
     }
     
     public var latexExpression: String {

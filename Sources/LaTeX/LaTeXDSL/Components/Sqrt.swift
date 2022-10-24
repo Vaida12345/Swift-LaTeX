@@ -22,7 +22,7 @@ private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
     }
     
     internal init(power: Double, _ source: Source) {
-        self.init(power: power, showLine: true, Group(source))
+        self.init(power: power, showLine: true, Group(source, shouldIncludeCurlyBrackets: true))
     }
     
     var latexExpression: String {

@@ -26,23 +26,23 @@ public struct LargeOperator<LowerBound: LaTeXComponent, UpperBound: LaTeXCompone
     
     public init(_ operator: LargeOperatorOperator, lowerBound: LowerBound, upperBound: UpperBound, body: Body) {
         self.operator = `operator`
-        self.lowerBound = Group(lowerBound)
-        self.upperBound = Group(upperBound)
-        self.body = Group(body)
+        self.lowerBound = Group(lowerBound, shouldIncludeCurlyBrackets: true)
+        self.upperBound = Group(upperBound, shouldIncludeCurlyBrackets: true)
+        self.body = Group(body, shouldIncludeCurlyBrackets: true)
     }
     
     public init(_ operator: LargeOperatorOperator, lowerBound: LowerBound, body: Body) where UpperBound == Never {
         self.operator = `operator`
-        self.lowerBound = Group(lowerBound)
+        self.lowerBound = Group(lowerBound, shouldIncludeCurlyBrackets: true)
         self.upperBound = nil
-        self.body = Group(body)
+        self.body = Group(body, shouldIncludeCurlyBrackets: true)
     }
     
     public init(_ operator: LargeOperatorOperator, body: Body) where UpperBound == Never, LowerBound == Never {
         self.operator = `operator`
         self.lowerBound = nil
         self.upperBound = nil
-        self.body = Group(body)
+        self.body = Group(body, shouldIncludeCurlyBrackets: true)
     }
     
     public init<Variable: LaTeXComponent, T: LaTeXComponent>(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: T, to upperBound: UpperBound, @LaTeXBuilder body: (_ variable: Variable) -> Body) where LowerBound == BinaryComponent<Variable, LaTeXSymbol, T> {
@@ -65,7 +65,7 @@ private struct RangedLargeOperator<Variable: LaTeXComponent, LowerBound: LaTeXCo
     private let body: (_ variable: Double) -> Body
     
     var latexExpression: String {
-        "\\\(self.operator.rawValue)_{\(self.variable.latexExpression) = \(self.lowerBound.latexExpression)}^\(self.upperBound.latexExpression) \(Group(self.body(Double.leastNonzeroMagnitude)).latexExpression)".replacingOccurrences(of: Double.leastNonzeroMagnitude.description, with: variable.latexExpression)
+        "\\\(self.operator.rawValue)_{\(self.variable.latexExpression) = \(self.lowerBound.latexExpression)}^\(self.upperBound.latexExpression) \(Group(self.body(Double.leastNonzeroMagnitude), shouldIncludeCurlyBrackets: true).latexExpression)".replacingOccurrences(of: Double.leastNonzeroMagnitude.description, with: variable.latexExpression)
     }
     
     func evaluated() -> EvaluatedResult<Self> {
@@ -93,7 +93,7 @@ private struct RangedLargeOperator<Variable: LaTeXComponent, LowerBound: LaTeXCo
         self.operator = `operator`
         self.variable = variable
         self.lowerBound = lowerBound
-        self.upperBound = Group(upperBound)
+        self.upperBound = Group(upperBound, shouldIncludeCurlyBrackets: true)
         self.body = body
     }
     
