@@ -35,6 +35,22 @@ internal struct LaTeXRenderer: NSViewRepresentable {
         return view
     }
     
+    private func updateSize(view: WKWebView) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+            Task {
+                guard let width = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientWidth") as? Int,
+                      let height = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientHeight") as? Int else {
+                    print("LaTeX Render: Update size failure, retry")
+                    updateSize(view: view)
+                    return
+                }
+                
+                self.width = CGFloat(width)
+                self.height = CGFloat(height)
+            }
+        }
+    }
+    
     func updateNSView(_ view: WKWebView, context: Context) {
         let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "$$" + formula + "$$")
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
@@ -43,15 +59,7 @@ internal struct LaTeXRenderer: NSViewRepresentable {
         
         view.loadHTMLString(htmlValue, baseURL: webViewBaseUrl)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            Task {
-                guard let width = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientWidth") as? Int else { return }
-                guard let height = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientHeight") as? Int else { return }
-                
-                self.width = CGFloat(width)
-                self.height = CGFloat(height)
-            }
-        }
+        updateSize(view: view)
     }
     
     private static let content =
