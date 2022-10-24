@@ -17,19 +17,19 @@ public struct LaTeXView: View {
     @State private var width: CGFloat?
     @State private var height: CGFloat?
     
+    let alignment: Alignment
+    
     private let formula: String
     
     public var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(.clear)
-                .contentShape(Rectangle())
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
-            LaTeXRenderer(formula: formula, width: $width, height: $height)
-                .frame(width: width, height: height)
-        }
-        .disabled(true)
+        LaTeXRenderer(formula: formula, width: $width, height: $height)
+            .frame(width: width, height: height)
+            .disabled(true)
+    }
+    
+    private init(formula: String, alignment: Alignment = .center) {
+        self.formula = formula
+        self.alignment = alignment
     }
     
     /// Initialize a new LaTeX View.
@@ -37,14 +37,14 @@ public struct LaTeXView: View {
     /// - parameters:
     ///   - formula: The formula in LaTeX to be displayed.
     public init(formula: String) {
-        self.formula = formula
+        self.init(formula: formula, alignment: .center)
     }
     
     public init(formula: some LaTeXComponent) {
-        self.formula = formula.latexExpression
+        self.init(formula: formula.latexExpression)
     }
     
     public init(@LaTeXBuilder formula: () -> some LaTeXComponent) {
-        self.formula = formula().latexExpression
+        self.init(formula: formula().latexExpression)
     }
 }
