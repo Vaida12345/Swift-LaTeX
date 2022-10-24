@@ -62,10 +62,10 @@ private struct RangedLargeOperator<Variable: LaTeXComponent, LowerBound: LaTeXCo
     
     private let upperBound: Group<UpperBound>
     
-    private let body: (_ variable: any LaTeXComponent) -> Body
+    private let body: (_ variable: Double) -> Body
     
     var latexExpression: String {
-        "\\\(self.operator.rawValue)_{\(self.variable.latexExpression) = \(self.lowerBound.latexExpression)}^\(self.upperBound.latexExpression) \(Group(self.body(self.variable)).latexExpression)"
+        "\\\(self.operator.rawValue)_{\(self.variable.latexExpression) = \(self.lowerBound.latexExpression)}^\(self.upperBound.latexExpression) \(Group(self.body(Double.leastNonzeroMagnitude)).latexExpression)".replacingOccurrences(of: Double.leastNonzeroMagnitude.description, with: variable.latexExpression)
     }
     
     func evaluated() -> EvaluatedResult<Self> {
@@ -75,7 +75,7 @@ private struct RangedLargeOperator<Variable: LaTeXComponent, LowerBound: LaTeXCo
         var cumulative: Double = self.operator == .sum ? 0 : 1
         
         for i in Int(lowerBound)...Int(upperBound) {
-            guard let partialValue = body(i).evaluated().numericValue else { return .symbolic(self) }
+            guard let partialValue = body(Double(i)).evaluated().numericValue else { return .symbolic(self) }
             
             if self.operator == .sum {
                 cumulative += partialValue
@@ -87,7 +87,7 @@ private struct RangedLargeOperator<Variable: LaTeXComponent, LowerBound: LaTeXCo
         return .numeric(cumulative)
     }
     
-    init(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: LowerBound, to upperBound: UpperBound, @LaTeXBuilder body: @escaping (_ variable: any LaTeXComponent) -> Body) {
+    init(_ operator: LargeOperatorOperator, _ variable: Variable, from lowerBound: LowerBound, to upperBound: UpperBound, @LaTeXBuilder body: @escaping (_ variable: Double) -> Body) {
         precondition(`operator` == .sum || `operator` == .prod)
         
         self.operator = `operator`
@@ -124,14 +124,14 @@ public enum LargeOperatorOperator: String {
 /// The sum.
 ///
 /// - Note: For more operations, use ``LargeOperator``.
-public func Sum<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: @escaping (_ variable: any LaTeXComponent) -> some LaTeXComponent) -> some LaTeXComponent {
+public func Sum<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: @escaping (_ variable: Double) -> some LaTeXComponent) -> some LaTeXComponent {
     RangedLargeOperator(.sum, variable, from: lowerBound, to: upperBound, body: body)
 }
 
 /// The prod.
 ///
 /// - Note: For more operations, use ``LargeOperator``.
-public func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: @escaping (_ variable: any LaTeXComponent) -> some LaTeXComponent) -> some LaTeXComponent {
+public func Product<Variable: LaTeXComponent>(_ variable: Variable, from lowerBound: some LaTeXComponent, to upperBound: some LaTeXComponent, @LaTeXBuilder body: @escaping (_ variable: Double) -> some LaTeXComponent) -> some LaTeXComponent {
     RangedLargeOperator(.prod, variable, from: lowerBound, to: upperBound, body: body)
 }
 

@@ -31,6 +31,30 @@ As a javascript package was used to render LaTeX, the Outgoing network Connectio
 
 This part was designed with the goal of writing LaTeX the way you write SwiftUI.
 
+$$ \sum\_{x = 1}^10 {{{\color{3a81f6} x}}^2} $$
+
+```swift
+Sum("x", from: 1, to: 10) { x in
+    x
+        .colored(.blue)
+        .squared()
+}
+```
+
+
+Note that the `Components` are translated to LaTeX only when `.latexExpression` is called.
+```swift
+print(formula)
+// RangedLargeOperator<...>(...)
+
+print(formula.latexExpression)
+// \sum_{x = 1}^10 {{{\color{3a81f6} x}}^2}
+
+print(formula.evaluated())
+// numeric(385.0)
+```
+
+
 $$ {{\nabla\times{\overrightarrow{\mathbf{B}}}}-{{\color{3a81f6} \frac{1}{C}}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}={4 \pi \rho} $$
 
 ```swift
@@ -62,14 +86,6 @@ let formula = LaTeXBuilder.build {
 }
 ```
 
-Note that the `Components` are translated to LaTeX only when `.latexExpression` is called.
-```swift
-print(formula)
-// TupleComponents<...>(...)
-
-print(formula.latexExpression)
-// \nabla\times\overrightarrow{\mathbf{B}}-{\color{3a81f6} \frac{1}{C}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}=4 \pi \rho
-```
 
 $$ \int\_{-N}^N {e^x \\, \mathrm{d}x} $$
 
@@ -82,6 +98,7 @@ Integral("x", from: "-N", to: "N") { variable in
     }
 }
 ```
+
 
 $$ {R\_\theta}={\begin{bmatrix}\cos\theta & -\sin\theta \\\\ \sin\theta & \cos\theta\end{bmatrix}} $$
 

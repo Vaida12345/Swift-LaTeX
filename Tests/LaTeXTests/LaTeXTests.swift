@@ -4,8 +4,11 @@ import XCTest
 final class LaTesTs: XCTestCase {
     func testExample() async throws {
         let formula = LaTeXBuilder.build {
-            Fraction(1, 2)
-                .stackrel(1)
+            Sum("x", from: 1, to: 10) { x in
+                x
+                    .colored(.blue)
+                    .squared()
+            }
         }
         
         print(formula)
