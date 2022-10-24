@@ -34,10 +34,12 @@ This part was designed with the goal of writing LaTeX the way you write SwiftUI.
 $$ \sum\_{x = 1}^{10} {{{\color{3a81f6} x}}^2}$$
 
 ```swift
-Sum("x", from: 1, to: 10) { x in
-    x
-        .colored(.blue)
-        .squared()
+let formula = LaTeXBuilder.build {
+    Sum("x", from: 1, to: 10) { x in
+        x
+            .colored(.blue)
+            .squared()
+    }
 }
 ```
 
@@ -58,31 +60,29 @@ print(formula.evaluated())
 $$ {{\nabla\times{\overrightarrow{\mathbf{B}}}}-{{\color{3a81f6} \frac{1}{C}}} \frac{\delta \overrightarrow{\mathbf{E}}}{\delta t}}={4 \pi \rho} $$
 
 ```swift
-let formula = LaTeXBuilder.build {
-    Equals {
-        Subtraction {
-            Multiplication {
-                nabla
-            } by: {
-                "B".font(.mathbf).overRightArrowed()
-            }
+Equals {
+    Subtraction {
+        Multiplication {
+            nabla
         } by: {
-            Fraction(1, "C")
-                .colored(.blue)
+            "B".font(.mathbf).overRightArrowed()
         }
-        
-        Fraction {
-            delta
-            "E".font(.mathbf).overRightArrowed()
-        } denominator: {
-            delta
-            "t"
-        }
-    } with: {
-        4
-        pi
-        rho
+    } by: {
+        Fraction(1, "C")
+            .colored(.blue)
     }
+    
+    Fraction {
+        delta
+        "E".font(.mathbf).overRightArrowed()
+    } denominator: {
+        delta
+        "t"
+    }
+} with: {
+    4
+    pi
+    rho
 }
 ```
 
