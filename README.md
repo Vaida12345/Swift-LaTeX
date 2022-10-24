@@ -31,7 +31,7 @@ As a javascript package was used to render LaTeX, the Outgoing network Connectio
 
 This part was designed with the goal of writing LaTeX the way you write SwiftUI.
 
-$$ \sum\_{x = 1}^{10} {{{\color{3a81f6} x}}^2}$$
+$$ \sum\_{x = 1}^{10} {{{\color{3a81f6} x}}^2} $$
 
 ```swift
 let formula = LaTeXBuilder.build {
