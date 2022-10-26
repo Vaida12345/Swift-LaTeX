@@ -9,6 +9,11 @@
 import SwiftUI
 
 
+/// A set of vertically aligned components.
+///
+/// The default alignment is `left`, which can be changed by ``aligned(_:)``
+///
+/// - Note: There is no `HorizontalComponent`, ``Group`` or ``LaTeXBuilder`` would be sufficient.
 public struct VerticalComponent<T>: LaTeXComponent {
     
     private let content: TupleComponents<T>
@@ -42,6 +47,8 @@ public struct VerticalComponent<T>: LaTeXComponent {
     }
     
     /// Note this alignment works independently with SwiftUI.
+    ///
+    /// - Bug: `.center` is not working as expected.
     public func aligned(_ alignment: HorizontalAlignment) -> VerticalComponent<T> {
         .init(content: self.content, alignment: alignment)
     }
