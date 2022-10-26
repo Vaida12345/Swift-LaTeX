@@ -16,6 +16,10 @@ public struct LaTeXBuilder {
         component
     }
     
+    public static func buildOptional<T: Component>(_ component: T?) -> T? {
+        component
+    }
+    
     public static func buildBlock<C0: LaTeXComponent,
                                   C1: LaTeXComponent> (_ c0: C0, _ c1: C1) -> TupleComponents<(C0, C1)> {
         TupleComponents((c0, c1))
