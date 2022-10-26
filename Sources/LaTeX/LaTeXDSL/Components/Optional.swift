@@ -8,7 +8,7 @@
 
 public struct OptionalComponent<Wrapped: LaTeXComponent>: LaTeXComponent {
     
-    private let wrapped: Wrapped?
+    internal let wrapped: Wrapped?
     
     public var latexExpression: String {
         self.wrapped?.latexExpression ?? ""

@@ -8,7 +8,7 @@
 
 public struct AnyComponent: LaTeXComponent {
     
-    private let content: any LaTeXComponent
+    internal let content: any LaTeXComponent
     
     public var latexExpression: String {
         content.latexExpression
