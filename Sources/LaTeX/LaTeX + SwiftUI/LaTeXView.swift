@@ -19,10 +19,17 @@ public struct LaTeXView: View {
     
     private let formula: String
     
+    private let alignment: Alignment
+    
     public var body: some View {
-        LaTeXRenderer(formula: formula, width: $width, height: $height)
+        LaTeXRenderer(formula: formula, alignment: alignment, width: $width, height: $height)
             .frame(width: width, height: height)
             .disabled(true)
+    }
+    
+    private init(formula: String, alignment: Alignment) {
+        self.formula = formula
+        self.alignment = alignment
     }
     
     /// Initialize a new LaTeX View.
@@ -30,7 +37,7 @@ public struct LaTeXView: View {
     /// - parameters:
     ///   - formula: The formula in LaTeX to be displayed.
     public init(formula: String) {
-        self.formula = formula
+        self.init(formula: formula, alignment: .center)
     }
     
     public init(formula: some LaTeXComponent) {
@@ -39,5 +46,12 @@ public struct LaTeXView: View {
     
     public init(@LaTeXBuilder formula: () -> some LaTeXComponent) {
         self.init(formula: formula().latexExpression)
+    }
+    
+    /// Changes the alignment of the LaTeX contents.
+    ///
+    /// - Important: This works independently with SwiftUI.
+    public func alignment(_ value: Alignment) -> LaTeXView {
+        .init(formula: self.formula, alignment: value)
     }
 }

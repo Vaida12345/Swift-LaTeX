@@ -14,15 +14,17 @@ internal struct LaTeXRenderer: NSViewRepresentable {
     
     typealias NSViewType = WKWebView
     
-    let formula: String
+    private let formula: String
+    private let alignment: Alignment
     
     @Binding var width: CGFloat?
     @Binding var height: CGFloat?
     
     @Environment(\.colorScheme) var colorScheme
     
-    init(formula: String, width: Binding<CGFloat?>, height: Binding<CGFloat?>) {
+    init(formula: String, alignment: Alignment, width: Binding<CGFloat?>, height: Binding<CGFloat?>) {
         self.formula = formula
+        self.alignment = alignment
         
         self._width = width
         self._height = height
@@ -52,9 +54,12 @@ internal struct LaTeXRenderer: NSViewRepresentable {
     }
     
     func updateNSView(_ view: WKWebView, context: Context) {
-        let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: formula.components(separatedBy: "\\\\").map { "$$" + $0 + "$$" }.joined(separator: "\n"))
+        let htmlValue = LaTeXRenderer.content
+            .replacingOccurrences(of: "## The body of equal goes here ##", with: formula.components(separatedBy: "\\\\").map { "$$" + $0 + "$$" }.joined(separator: "\n"))
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
             .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme))
+            .replacingOccurrences(of: "## text alignment ##", with: self.alignment.htmlAlignment.text)
+            .replacingOccurrences(of: "## vertical alignment ##", with: self.alignment.htmlAlignment.vertical)
         let webViewBaseUrl = URL(fileURLWithPath: Bundle.main.bundlePath, isDirectory: true)
         
         view.loadHTMLString(htmlValue, baseURL: webViewBaseUrl)
@@ -98,9 +103,9 @@ internal struct LaTeXRenderer: NSViewRepresentable {
                 border: 0;
                 outline: 0;
                 font-size: 100%;
-                text-align: center;
+                text-align: ## text alignment ##;
                 background: transparent;
-                vertical-align: middle;
+                vertical-align: ## vertical alignment ##;
             }
 
             #LaTeXView {
@@ -109,8 +114,8 @@ internal struct LaTeXRenderer: NSViewRepresentable {
                 min-width: 0px;
                 overflow: hidden;
                 padding: 0px;
-                text-align: center;
-                vertical-align: middle;
+                text-align: ## text alignment ##;
+                vertical-align: ## vertical alignment ##;
             }
         </style>
     </head>
@@ -185,6 +190,41 @@ internal extension Color {
         } else {
             return Color(.displayP3, red: 36 / 255, green: 36 / 255, blue: 36 / 255)
         }
+    }
+    
+}
+
+
+private extension Alignment {
+    
+    var htmlAlignment: (text: String, vertical: String) {
+        var textAlignment: String {
+            switch self {
+            case .leading, .topLeading, .bottomLeading:
+                return "left"
+            case .center, .top, .bottom:
+                return "center"
+            case .trailing, .topTrailing, .trailing:
+                return "right"
+            default:
+                return "center"
+            }
+        }
+        
+        var verticalAlignment: String {
+            switch self {
+            case .top, .topLeading, .topTrailing:
+                return "top"
+            case .center, .leading, .trailing:
+                return "middle"
+            case .bottom, .bottomLeading, .bottomTrailing:
+                return "bottom"
+            default:
+                return "middle"
+            }
+        }
+        
+        return (textAlignment, verticalAlignment)
     }
     
 }
