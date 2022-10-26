@@ -38,7 +38,7 @@ public struct VerticalComponent<T>: LaTeXComponent {
     }
     
     public init(@LaTeXBuilder content: () -> TupleComponents<T>) {
-        self.init(content: content(), alignment: .center)
+        self.init(content: content(), alignment: .leading)
     }
     
     /// Note this alignment works independently with SwiftUI.
