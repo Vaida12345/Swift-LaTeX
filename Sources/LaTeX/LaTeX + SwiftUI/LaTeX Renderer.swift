@@ -62,6 +62,8 @@ internal struct LaTeXRenderer: NSViewRepresentable {
             .replacingOccurrences(of: "## vertical alignment ##", with: self.alignment.htmlAlignment.vertical)
         let webViewBaseUrl = URL(fileURLWithPath: Bundle.main.bundlePath, isDirectory: true)
         
+        print(htmlValue)
+        
         view.loadHTMLString(htmlValue, baseURL: webViewBaseUrl)
         
         updateSize(view: view)
