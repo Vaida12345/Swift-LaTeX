@@ -55,7 +55,7 @@ internal struct LaTeXRenderer: NSViewRepresentable {
     
     func updateNSView(_ view: WKWebView, context: Context) {
         let htmlValue = LaTeXRenderer.content
-            .replacingOccurrences(of: "## The body of equal goes here ##", with: formula.components(separatedBy: "\\\\").filter { !$0.isEmpty }.map{ $0.hasSuffix("\n") ? String($0.dropLast(1)) : $0 }.map { "$$" + $0 + "$$" }.joined(separator: "<br>\n"))
+            .replacingOccurrences(of: "## The body of equal goes here ##", with: formula)
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
             .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme))
             .replacingOccurrences(of: "## text alignment ##", with: self.alignment.htmlAlignment.text)
