@@ -41,4 +41,9 @@ public struct VerticalComponent<T>: LaTeXComponent {
         self.init(content: content(), alignment: .center)
     }
     
+    /// Note this alignment works independently with SwiftUI.
+    public func aligned(_ alignment: HorizontalAlignment) -> VerticalComponent<T> {
+        .init(content: self.content, alignment: alignment)
+    }
+    
 }
