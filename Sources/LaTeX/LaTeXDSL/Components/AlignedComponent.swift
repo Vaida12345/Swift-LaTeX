@@ -23,11 +23,11 @@ public struct VerticalComponent<T>: LaTeXComponent {
     public var latexExpression: String {
         switch alignment {
         case .center:
-            return "\\begin{gather}" + content.components.map(\.latexExpression).joined(separator: "\\\\\n") + "\\end{gather}"
+            return "\\begin{gather}\n" + content.components.map(\.latexExpression).joined(separator: "\\\\\n") + "\n\\end{gather}\n"
         case .leading:
-            return "\\begin{align}" + content.components.map { "&\($0.latexExpression)" }.joined(separator: "\\\\\n") + "\\end{align}"
+            return "\\begin{align}\n" + content.components.map { "&\($0.latexExpression)" }.joined(separator: "\\\\\n") + "\n\\end{align}\n"
         case .trailing:
-            return "\\begin{align}" + content.components.map(\.latexExpression).joined(separator: "\\\\\n") + "\\end{align}"
+            return "\\begin{align}\n" + content.components.map(\.latexExpression).joined(separator: "\\\\\n") + "\n\\end{align}\n"
         default:
             fatalError()
         }

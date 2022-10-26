@@ -14,13 +14,13 @@ public struct LaTeXMatrix: LaTeXComponent {
     public var latexExpression: String {
         let matrixName = isBounded ? "bmatrix" : "matrix"
         
-        var result = "\\begin{\(matrixName)}"
+        var result = "\\begin{\(matrixName)}\n"
         
         result += contents.map {
             $0.map(\.latexExpression).joined(separator: " & ")
-        }.joined(separator: " \\\\ ")
+        }.joined(separator: " \\\\\n ")
         
-        return result + "\\end{\(matrixName)}"
+        return result + "\n\\end{\(matrixName)}\n"
     }
     
     public func evaluated() -> EvaluatedResult<Self> {
