@@ -47,11 +47,4 @@ public struct LaTeXView: View {
     public init(@LaTeXBuilder formula: () -> some LaTeXComponent) {
         self.init(formula: formula().latexExpression)
     }
-    
-    /// Changes the alignment of the LaTeX contents.
-    ///
-    /// - Important: This works independently with SwiftUI.
-    public func alignment(_ value: Alignment) -> LaTeXView {
-        .init(formula: self.formula, alignment: value)
-    }
 }
