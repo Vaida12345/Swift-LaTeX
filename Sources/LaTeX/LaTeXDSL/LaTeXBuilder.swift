@@ -16,8 +16,8 @@ public struct LaTeXBuilder {
         component
     }
     
-    public static func buildOptional<T: Component>(_ component: T?) -> T? {
-        component
+    public static func buildOptional<T: Component>(_ component: T?) -> OptionalComponent<T> {
+        .init(wrapped: component)
     }
     
     public static func buildBlock<C0: LaTeXComponent,

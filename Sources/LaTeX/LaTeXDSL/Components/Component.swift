@@ -66,25 +66,3 @@ extension Never: LaTeXComponent {
     }
     
 }
-
-extension Optional: LaTeXComponent where Wrapped: LaTeXComponent {
-    
-    public var latexExpression: String {
-        switch self {
-        case .none:
-            return ""
-        case .some(let wrapped):
-            return wrapped.latexExpression
-        }
-    }
-    
-    public func evaluated() -> EvaluatedResult<Wrapped.EvaluatedResultType> {
-        switch self {
-        case .none:
-            return .null
-        case .some(let wrapped):
-            return wrapped.evaluated()
-        }
-    }
-    
-}

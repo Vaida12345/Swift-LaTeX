@@ -23,7 +23,7 @@ public enum EvaluatedResult<T: LaTeXComponent> {
     /// In the cases where the result is symbolic, the result is simply the LaTeX Component itself.
     case symbolic(_ value: T)
     
-    /// No result.
+    /// No result, should be ignored when evaluating.
     case null
     
     
