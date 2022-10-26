@@ -18,7 +18,7 @@ public struct VerticalComponent<T>: LaTeXComponent {
     public var latexExpression: String {
         switch alignment {
         case .center:
-            return content.components.map(\.latexExpression).joined(separator: "\\\\\n")
+            return "\\begin{gather}" + content.components.map(\.latexExpression).joined(separator: "\\\\\n") + "\\end{gather}"
         case .leading:
             return "\\begin{align}" + content.components.map { "&\($0.latexExpression)" }.joined(separator: "\\\\\n") + "\\end{align}"
         case .trailing:
