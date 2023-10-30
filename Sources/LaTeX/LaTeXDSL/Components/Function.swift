@@ -54,6 +54,14 @@ public struct Function<Source: LaTeXComponent>: LaTeXComponent {
         }
     }
     
+    public var pyDescription: String {
+        if let index {
+            return "\(name)(\(index.pyDescription), \(self.source.pyDescription))"
+        } else {
+            return "\(name)(\(self.source.pyDescription))"
+        }
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         guard let source = self.source.evaluated().numericValue else { return .symbolic(self) }
         

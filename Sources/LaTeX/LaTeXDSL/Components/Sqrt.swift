@@ -35,6 +35,14 @@ private struct Sqrt<Source: LaTeXComponent>: LaTeXComponent {
         }
     }
     
+    var pyDescription: String {
+        if power == 2 {
+            return "math.sqrt(\(self.source.latexExpression))"
+        } else {
+            return "(\(self.source.latexExpression) ** (1/\(power.latexExpression)))"
+        }
+    }
+    
     func evaluated() -> EvaluatedResult<Self> {
         guard let source = self.source.evaluated().numericValue else { return .symbolic(self) }
         

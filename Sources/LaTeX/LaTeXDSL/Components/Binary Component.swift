@@ -27,6 +27,10 @@ public struct BinaryComponent<LHS: LaTeXComponent, Operator: LaTeXComponent, RHS
         lhs.latexExpression + self.operator.latexExpression + rhs.latexExpression
     }
     
+    public var pyDescription: String {
+        "\(lhs.pyDescription) \(self.operator.pyDescription) \(rhs.pyDescription)"
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         guard let lhs = lhs.evaluated().numericValue,
               let rhs = rhs.evaluated().numericValue else { return .symbolic(self) }

@@ -33,6 +33,10 @@ public struct VerticalComponent<T>: LaTeXComponent {
         }
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<TupleComponents<T>.EvaluatedResultType> {
         self.content.evaluated()
     }

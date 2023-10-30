@@ -16,6 +16,10 @@ public struct Limit<Variable: LaTeXComponent, Bound: LaTeXComponent, Body: LaTeX
         "\\lim_\(lowerBound.latexExpression) \(body.latexExpression)"
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         .symbolic(self)
     }

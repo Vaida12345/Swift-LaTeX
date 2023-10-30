@@ -14,6 +14,10 @@ public struct AnyComponent: LaTeXComponent {
         content.latexExpression
     }
     
+    public var pyDescription: String {
+        content.pyDescription
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         .symbolic(self)
     }

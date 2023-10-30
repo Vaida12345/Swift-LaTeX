@@ -14,6 +14,10 @@ public struct OptionalComponent<Wrapped: LaTeXComponent>: LaTeXComponent {
         self.wrapped?.latexExpression ?? ""
     }
     
+    public var pyDescription: String {
+        self.wrapped?.pyDescription ?? ""
+    }
+    
     public func evaluated() -> EvaluatedResult<Wrapped.EvaluatedResultType> {
         if let wrapped {
             return wrapped.evaluated()

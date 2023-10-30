@@ -15,6 +15,10 @@ public struct LaTeXArgumentMatrix: LaTeXComponent {
         "\\left[" + contents.latexExpression + "\\left| \\," + rhs.latexExpression + "\\right. \\right]"
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     /// The evaluated result is the same as ``latexExpression``.
     public func evaluated() -> EvaluatedResult<Self> {
         .symbolic(self)

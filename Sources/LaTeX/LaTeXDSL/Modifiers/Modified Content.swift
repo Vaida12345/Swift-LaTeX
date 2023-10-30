@@ -20,6 +20,10 @@ extension LaTeXModifiedContent: LaTeXComponent where Content: LaTeXComponent, Mo
         self.modifier.modify(self.content)
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<LaTeXModifiedContent<Content, Modifier>> {
         self.modifier.evaluated(self.content)
     }

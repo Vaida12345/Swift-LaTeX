@@ -18,6 +18,10 @@ private struct ColoredContent<Content: LaTeXComponent>: LaTeXComponent {
         "\\color{\(self.color)} \(content.latexExpression)"
     }
     
+    public var pyDescription: String {
+        content.pyDescription
+    }
+    
     func evaluated() -> EvaluatedResult<Content.EvaluatedResultType> {
         self.content.evaluated()
     }

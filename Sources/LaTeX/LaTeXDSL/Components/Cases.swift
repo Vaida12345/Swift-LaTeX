@@ -18,12 +18,20 @@ public struct Cases: LaTeXComponent {
         return .symbolic(self)
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public struct Body: LaTeXComponent {
         
         var contents: [any LaTeXComponent]
         
         public var latexExpression: String {
             contents.map(\.latexExpression).joined(separator: " ")
+        }
+        
+        public var pyDescription: String {
+            fatalError("Attempting to generate python syntax for non mathematical expression")
         }
         
         public func evaluated() -> EvaluatedResult<Self> {

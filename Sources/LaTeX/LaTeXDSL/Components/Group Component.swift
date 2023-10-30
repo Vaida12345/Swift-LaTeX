@@ -37,6 +37,10 @@ public struct Group<Source: LaTeXComponent>: LaTeXComponent {
         }
     }
     
+    public var pyDescription: String {
+        self.source.pyDescription
+    }
+    
     public func evaluated() -> EvaluatedResult<Source.EvaluatedResultType> {
         self.source.evaluated()
     }

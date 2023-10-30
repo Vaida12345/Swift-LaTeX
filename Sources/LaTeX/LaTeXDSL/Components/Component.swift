@@ -12,6 +12,9 @@ public protocol LaTeXComponent {
     /// The expression in LaTeX.
     var latexExpression: String { get }
     
+    /// The syntax in python.
+    var pyDescription: String { get }
+    
     associatedtype EvaluatedResultType: LaTeXComponent
     
     /// Evaluate the current expression.
@@ -23,6 +26,10 @@ extension String: LaTeXComponent {
     
     public var latexExpression: String {
         self
+    }
+    
+    public var pyDescription: String {
+        self.latexExpression
     }
     
     public func evaluated() -> EvaluatedResult<String> {
@@ -37,6 +44,10 @@ extension Double: LaTeXComponent {
         self.description
     }
     
+    public var pyDescription: String {
+        self.latexExpression
+    }
+    
     public func evaluated() -> EvaluatedResult<Never> {
         .numeric(self)
     }
@@ -49,6 +60,10 @@ extension Int: LaTeXComponent {
         self.description
     }
     
+    public var pyDescription: String {
+        self.latexExpression
+    }
+    
     public func evaluated() -> EvaluatedResult<Never> {
         .numeric(Double(self))
     }
@@ -59,6 +74,10 @@ extension Never: LaTeXComponent {
     
     public var latexExpression: String {
         fatalError()
+    }
+    
+    public var pyDescription: String {
+        self.latexExpression
     }
     
     public func evaluated() -> EvaluatedResult<String> {

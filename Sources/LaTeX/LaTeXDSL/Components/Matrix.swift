@@ -23,6 +23,10 @@ public struct LaTeXMatrix: LaTeXComponent {
         return result + "\n\\end{\(matrixName)}\n"
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         .symbolic(self)
     }

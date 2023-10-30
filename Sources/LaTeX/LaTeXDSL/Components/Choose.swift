@@ -16,6 +16,10 @@ public struct Choose<Upper: LaTeXComponent, Lower: LaTeXComponent>: LaTeXCompone
         "{\(upper) \\choose \(lower)}"
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         guard let uppeR = upper.evaluated().numericValue,
               let loweR = lower.evaluated().numericValue else { return .symbolic(self) }

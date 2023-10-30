@@ -20,6 +20,10 @@ public struct LaTeXSymbol: LaTeXComponent, CustomStringConvertible {
         self.latexExpression
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<String> {
         .symbolic(self.latexExpression)
     }

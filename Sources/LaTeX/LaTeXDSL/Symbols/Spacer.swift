@@ -14,6 +14,10 @@ public struct Spacer: LaTeXComponent {
         self.latexExpression = expression
     }
     
+    public var pyDescription: String {
+        ""
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         .null
     }

@@ -20,6 +20,10 @@ public struct LargeOperator<LowerBound: LaTeXComponent, UpperBound: LaTeXCompone
         "\\\(self.operator.rawValue)_\(self.lowerBound?.latexExpression ?? "")^\(self.upperBound?.latexExpression ?? "") \(self.body.latexExpression)"
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         .symbolic(self)
     }
@@ -66,6 +70,10 @@ private struct RangedLargeOperator<Variable: LaTeXComponent, LowerBound: LaTeXCo
     
     var latexExpression: String {
         "\\\(self.operator.rawValue)_{\(self.variable.latexExpression) = \(self.lowerBound.latexExpression)}^\(self.upperBound.latexExpression) \(Group(self.body(Double.leastNonzeroMagnitude), shouldIncludeCurlyBrackets: true).latexExpression)".replacingOccurrences(of: Double.leastNonzeroMagnitude.description, with: variable.latexExpression)
+    }
+    
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
     }
     
     func evaluated() -> EvaluatedResult<Self> {

@@ -25,6 +25,10 @@ public struct Derivative<Base: LaTeXComponent, Content: LaTeXComponent>: LaTeXCo
         }
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         .symbolic(self)
     }

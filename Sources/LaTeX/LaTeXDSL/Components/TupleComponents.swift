@@ -16,6 +16,10 @@ public struct TupleComponents<T>: LaTeXComponent {
         self.components.map(\.latexExpression).joined(separator: " ")
     }
     
+    public var pyDescription: String {
+        fatalError("Attempting to generate python syntax for non mathematical expression")
+    }
+    
     public func evaluated() -> EvaluatedResult<Self> {
         .symbolic(self)
     }
