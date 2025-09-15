@@ -116,7 +116,7 @@ public struct Function<Source: LaTeXComponent>: LaTeXComponent {
 ///
 /// - Experiment: Maps to `$\arccos x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -126,7 +126,7 @@ public func arccos(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("
 ///
 /// - Experiment: Maps to `$\arcsin x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -136,7 +136,7 @@ public func arcsin(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("
 ///
 /// - Experiment: Maps to `$\arctan x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -146,7 +146,7 @@ public func arctan(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("
 ///
 /// - Experiment: Maps to `$\arg x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -156,7 +156,7 @@ public func arg(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("arg
 ///
 /// - Experiment: Maps to `$\sinh x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -166,7 +166,7 @@ public func sinh(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("si
 ///
 /// - Experiment: Maps to `$\cos x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -176,7 +176,7 @@ public func cos(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("cos
 ///
 /// - Experiment: Maps to `$\cosh x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -186,7 +186,7 @@ public func cosh(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("co
 ///
 /// - Experiment: Maps to `$\cot x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -196,7 +196,7 @@ public func cot(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("cot
 ///
 /// - Experiment: Maps to `$\coth x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -206,7 +206,7 @@ public func coth(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("co
 ///
 /// - Experiment: Maps to `$\sup x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -216,7 +216,7 @@ public func sup(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("sup
 ///
 /// - Experiment: Maps to `$\csc x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -226,7 +226,7 @@ public func csc(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("csc
 ///
 /// - Experiment: Maps to `$\deg x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -236,7 +236,7 @@ public func deg(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("deg
 ///
 /// - Experiment: Maps to `$\det x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -246,7 +246,7 @@ public func det(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("det
 ///
 /// - Experiment: Maps to `$\dim x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -256,7 +256,7 @@ public func dim(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("dim
 ///
 /// - Experiment: Maps to `$\tan x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -266,7 +266,7 @@ public func tan(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("tan
 ///
 /// - Experiment: Maps to `$\exp x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -276,7 +276,7 @@ public func exp(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("exp
 ///
 /// - Experiment: Maps to `$\gcd x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -286,7 +286,7 @@ public func gcd(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("gcd
 ///
 /// - Experiment: Maps to `$\hom x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -296,7 +296,7 @@ public func hom(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("hom
 ///
 /// - Experiment: Maps to `$\inf x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Note: Not to be confused with ``infinity``.
 ///
@@ -308,7 +308,7 @@ public func inf(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("inf
 ///
 /// - Experiment: Maps to `$tanh x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -318,7 +318,7 @@ public func tanh(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("ta
 ///
 /// - Experiment: Maps to `$\ker x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -328,7 +328,7 @@ public func ker(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("ker
 ///
 /// - Experiment: Maps to `$\lg x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -338,7 +338,7 @@ public func lg(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("lg",
 ///
 /// - Experiment: Maps to `$\liminf x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -348,7 +348,7 @@ public func liminf(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("
 ///
 /// - Experiment: Maps to `$\limsup x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -358,7 +358,7 @@ public func limsup(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("
 ///
 /// - Experiment: Maps to `$\log x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -368,7 +368,7 @@ public func log(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("log
 ///
 /// - Experiment: Maps to `$\log_{index} x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - subscript: The subscript to the `log` function.
@@ -379,7 +379,7 @@ public func log(subscript: some LaTeXComponent, _ x: some LaTeXComponent) -> som
 ///
 /// - Experiment: Maps to `$\ln x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -389,7 +389,7 @@ public func ln(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("ln",
 ///
 /// - Experiment: Maps to `$\max x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -399,7 +399,7 @@ public func max(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("max
 ///
 /// - Experiment: Maps to `$\min x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -409,7 +409,7 @@ public func min(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("min
 ///
 /// - Experiment: Maps to `$\Pr x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -419,7 +419,7 @@ public func Pr(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("Pr",
 ///
 /// - Experiment: Maps to `$\sec x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
@@ -429,7 +429,7 @@ public func sec(_ x: some LaTeXComponent) -> some LaTeXComponent { Function("sec
 ///
 /// - Experiment: Maps to `$\sin x$` in LaTeX.
 ///
-/// - Note: To wrap the body with brackets `()`, see ``Function/includeBrackets(_:)``.
+/// - Note: To wrap the body with brackets `()`, see ``Function/includeRoundBrackets(_:)``.
 ///
 /// - Parameters:
 ///   - x: The body of the function.
