@@ -28,7 +28,6 @@ internal struct LaTeXRenderer: View {
         
         let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "$$" + formula + "$$")
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
-            .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme))
             .replacingOccurrences(of: "## text alignment ##", with: self.alignment.htmlAlignment.text)
             .replacingOccurrences(of: "## vertical alignment ##", with: self.alignment.htmlAlignment.vertical)
         
@@ -37,6 +36,7 @@ internal struct LaTeXRenderer: View {
     
     var body: some View {
         WebView(self.webPage)
+            .webViewContentBackground(.hidden)
     }
     
     private static let content =
@@ -63,7 +63,7 @@ internal struct LaTeXRenderer: View {
 
         <style>
             body {
-                background: ## background color ##;
+                background: rgba(0, 0, 0, 0);
                 color: ## foreground color ##;
                 text-align: center;
                 vertical-align: middle;
