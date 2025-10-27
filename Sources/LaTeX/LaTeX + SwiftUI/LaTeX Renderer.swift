@@ -15,28 +15,31 @@ internal struct LaTeXRenderer: View {
     private let formula: String
     private let alignment: Alignment
     
-    let webPage: WebPage
+    /// Use state to avoid constant reloading.
+    @State var webPage = WebPage()
     
     @Environment(\.colorScheme) var colorScheme
     
     init(formula: String, alignment: Alignment) {
         self.formula = formula
         self.alignment = alignment
-        
-        self.webPage = WebPage()
-        
-        
-        let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "$$" + formula + "$$")
-            .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
-            .replacingOccurrences(of: "## text alignment ##", with: self.alignment.htmlAlignment.text)
-            .replacingOccurrences(of: "## vertical alignment ##", with: self.alignment.htmlAlignment.vertical)
-        
-        webPage.load(html: htmlValue)
     }
     
     var body: some View {
         WebView(self.webPage)
             .webViewContentBackground(.hidden)
+            .onAppear(perform: update)
+            .onChange(of: self.formula, { update() })
+            .onChange(of: self.colorScheme, { update() })
+    }
+    
+    func update() {
+        let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "\\[\n" + formula + "\n\\]")
+            .replacingOccurrences(of: "## text alignment ##", with: self.alignment.htmlAlignment.text)
+            .replacingOccurrences(of: "## vertical alignment ##", with: self.alignment.htmlAlignment.vertical)
+            .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
+        
+        self.webPage.load(html: htmlValue)
     }
     
     private static let content =
@@ -50,14 +53,6 @@ internal struct LaTeXRenderer: View {
       <meta name="viewport" content="width=device-width">
 
       <title>MathJax v3 with TeX input and HTML output</title>
-
-      <script>
-          MathJax = {
-            tex: {
-                    inlineMath: [['$', '$'], ['\\(', '\\)']]
-                }
-          };
-      </script>
 
       <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
@@ -201,12 +196,24 @@ private extension Alignment {
     
 }
 
+#Preview {
+    @Previewable @State var value = 0.0
+    
+    VStack {
+        LaTeXView(formula: "\(value)")
+        
+        Slider(value: $value)
+            .padding()
+    }
+}
 
-struct MyView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            LaTeXView(formula: "\\alpha + \\beta")
-        }
-        .preferredColorScheme(.light)
+#Preview {
+    LaTeXView {
+        """
+        \\begin{bmatrix}
+        10 \\\\
+        20
+        \\end{bmatrix}
+        """
     }
 }

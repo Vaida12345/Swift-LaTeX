@@ -5,13 +5,27 @@
 //  Created by Vaida on 10/18/22.
 //
 
-
+import WebKit
 import SwiftUI
 
 
 /// A view that can display LaTeX formulas.
 ///
-/// - Note: Outgoing network Connections needs to be enabled in Project Sandbox.
+/// This package uses web hosted MathJAX for math rendering.
+///
+/// ```swift
+/// LaTeXView {
+///     """
+///     \\begin{bmatrix}
+///     10 \\\\
+///     20
+///     \\end{bmatrix}
+///     """
+/// }
+/// ```
+///
+/// > Limitation:
+/// > This view is unable to infer the size of its contents before the content is displayed, hence the size of this view is always `infinity`.
 public struct LaTeXView: View {
     
     private let formula: String
