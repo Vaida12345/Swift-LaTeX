@@ -5,65 +5,38 @@
 //  Created by Vaida on 10/18/22.
 //
 
-
 import SwiftUI
 import WebKit
 
 
-internal struct LaTeXRenderer: NSViewRepresentable {
-    
-    typealias NSViewType = WKWebView
+@available(macOS 26.0, iOS 26, *)
+internal struct LaTeXRenderer: View {
     
     private let formula: String
     private let alignment: Alignment
     
-    @Binding var width: CGFloat?
-    @Binding var height: CGFloat?
+    let webPage: WebPage
     
     @Environment(\.colorScheme) var colorScheme
     
-    init(formula: String, alignment: Alignment, width: Binding<CGFloat?>, height: Binding<CGFloat?>) {
+    init(formula: String, alignment: Alignment) {
         self.formula = formula
         self.alignment = alignment
         
-        self._width = width
-        self._height = height
-    }
-    
-    func makeNSView(context: Context) -> WKWebView {
-        let view = WKWebView()
+        self.webPage = WebPage()
         
-        updateNSView(view, context: context)
-        return view
-    }
-    
-    private func updateSize(view: WKWebView) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            Task {
-                guard let width = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientWidth") as? Int,
-                      let height = try? await view.evaluateJavaScript("document.getElementById('LaTeXView').clientHeight") as? Int else {
-                    print("LaTeX Render: Update size failure, retry")
-                    updateSize(view: view)
-                    return
-                }
-                
-                self.width = CGFloat(width)
-                self.height = CGFloat(height)
-            }
-        }
-    }
-    
-    func updateNSView(_ view: WKWebView, context: Context) {
+        
         let htmlValue = LaTeXRenderer.content.replacingOccurrences(of: "## The body of equal goes here ##", with: "$$" + formula + "$$")
             .replacingOccurrences(of: "## foreground color ##", with: "#" + Color.foreground(for: colorScheme).hexDescription)
             .replacingOccurrences(of: "## background color ##", with: "#" + Color.background(for: colorScheme))
             .replacingOccurrences(of: "## text alignment ##", with: self.alignment.htmlAlignment.text)
             .replacingOccurrences(of: "## vertical alignment ##", with: self.alignment.htmlAlignment.vertical)
-        let webViewBaseUrl = URL(fileURLWithPath: Bundle.main.bundlePath, isDirectory: true)
         
-        view.loadHTMLString(htmlValue, baseURL: webViewBaseUrl)
-        
-        updateSize(view: view)
+        webPage.load(html: htmlValue)
+    }
+    
+    var body: some View {
+        WebView(self.webPage)
     }
     
     private static let content =
@@ -86,7 +59,7 @@ internal struct LaTeXRenderer: NSViewRepresentable {
           };
       </script>
 
-      <script id="MathJax-script" async src="Contents/Resources/Swift-LaTeX_LaTeX.bundle/Contents/Resources/MathJax/es5/tex-chtml.js"></script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
         <style>
             body {
@@ -232,7 +205,7 @@ private extension Alignment {
 struct MyView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            LaTeXView(formula: "1234567")
+            LaTeXView(formula: "\\alpha + \\beta")
         }
         .preferredColorScheme(.light)
     }

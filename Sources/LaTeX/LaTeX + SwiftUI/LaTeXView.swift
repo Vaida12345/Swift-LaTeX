@@ -14,16 +14,12 @@ import SwiftUI
 /// - Note: Outgoing network Connections needs to be enabled in Project Sandbox.
 public struct LaTeXView: View {
     
-    @State private var width: CGFloat?
-    @State private var height: CGFloat?
-    
     private let formula: String
     
     private let alignment: Alignment
     
     public var body: some View {
-        LaTeXRenderer(formula: formula, alignment: alignment, width: $width, height: $height)
-            .frame(width: width, height: height)
+        LaTeXRenderer(formula: formula, alignment: alignment)
             .disabled(true)
     }
     
@@ -47,4 +43,9 @@ public struct LaTeXView: View {
     public init(@LaTeXBuilder formula: () -> some LaTeXComponent) {
         self.init(formula: formula().latexExpression)
     }
+}
+
+
+#Preview {
+    LaTeXView(formula: "\\beta")
 }
